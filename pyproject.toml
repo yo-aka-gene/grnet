@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "grnet"
+version = "0.1.0"
+description = "Python package for gene regulatory networks (GRN) using Bayesian network"
+authors = ["yo-aka-gene <yujiokano@keio.jp>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+numpy = "^1.24.1"
+pandas = "^1.5.3"
+matplotlib = "^3.6.3"
+pgmpy = "^0.1.21"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.1"
+tox = "^4.3.5"
+flake8 = "^6.0.0"
+setuptools = "^66.1.1"
+twine = "^4.0.2"
+wheel = "^0.38.4"
+pandoc = "^2.3"
+numpydoc = "^1.5.0"
+nbsphinx = "^0.8.12"
+sphinx-gallery = "^0.11.1"
+sphinx-rtd-theme = "^1.1.1"
+sphinx = "^5.3.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
