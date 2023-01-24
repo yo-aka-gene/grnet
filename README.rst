@@ -28,7 +28,7 @@ Citation
     :target: https://pubmed.ncbi.nlm.nih.gov/36400029/
     :alt: PMID
 
-
+|
 .. image:: https://github.com/yo-aka-gene/algebra_ver822/blob/main/doc_img/graphical_abstract.PNG
     :height: 200px
     :width: 200px
