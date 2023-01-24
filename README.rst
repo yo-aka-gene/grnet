@@ -29,6 +29,9 @@ Citation
     :alt: PMID
 
 .. image:: https://github.com/yo-aka-gene/algebra_ver822/blob/main/doc_img/graphical_abstract.PNG
+    :height: 150px
+    :width: 150px
+    :align: center
     :target: https://www.cell.com/stem-cell-reports/fulltext/S2213-6711(22)00511-2?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS2213671122005112%3Fshowall%3Dtrue
     :alt: Graphical abstract
 
