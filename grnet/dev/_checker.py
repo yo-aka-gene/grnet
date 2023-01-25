@@ -30,7 +30,7 @@ def typechecker(
     Examples
     --------
     >>> import numpy as np
-    >>> from sparcity.dev import typechecker
+    >>> from grnet.dev import typechecker
     >>> typechecker("a", str, "alphabet")
     >>> typechecker(0.5, np.float64, "Q")
     Traceback (most recent call last):
@@ -75,7 +75,7 @@ def valchecker(
             It raises AssertionError when condition is False
     Examples
     --------
-    >>> from sparcity.dev import valchecker
+    >>> from grnet.dev import valchecker
     >>> valchecker(isinstance("a", str))
     >>> x = 5
     >>> valchecker(x < 10, suffix="I like chocolate!!!")
