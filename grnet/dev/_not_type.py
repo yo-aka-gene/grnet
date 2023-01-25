@@ -14,6 +14,7 @@ types = [
     pd.DataFrame(np.eye(2), index=["a", "b"]).index
 ]
 
+
 def invalid_types(
     exception: Union[type, Tuple[type]]
 ) -> List[type]:
@@ -45,5 +46,5 @@ def invalid_types(
             typechecker(v, type, f"exception[{i}]")
     else:
         typechecker(exception, type, "exception")
-    
+
     return [t for t in types if not isinstance(t, exception)]
