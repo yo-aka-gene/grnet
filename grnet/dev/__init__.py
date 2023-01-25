@@ -1,8 +1,8 @@
 from ._checker import typechecker, valchecker
-from ._typemolds import invalid_types
+from ._typemolds import typemolds
 
 __all__ = [
-    "invalid_types",
     "typechecker",
+    "typemolds",
     "valchecker",
 ]

@@ -8,7 +8,7 @@ from typing import List, Tuple, Union
 from ._checker import typechecker
 
 
-def invalid_types(
+def typemolds(
     exception: Union[type, Tuple[type]]
 ) -> List[type]:
     """
@@ -26,11 +26,11 @@ def invalid_types(
 
     Examples
     --------
-    >>> from grnet.dev import invalid_types
-    >>> not_str = invalid_types(str)
+    >>> from grnet.dev import typemolds
+    >>> not_str = typemolds(str)
     >>> np.all([not isinstance(v, str) for v in not_str])
     True
-    >>> not_int = invalid_types((int, np.int64))
+    >>> not_int = typemolds((int, np.int64))
     >>> np.all([not isinstance(v, (int, np.int64)) for v in not_int])
     True
     """
@@ -42,7 +42,7 @@ def invalid_types(
     
     types = [
         "a", 0, 1.1, 1+4j, np.ones(10)[1], np.pi,
-        True, type, lambda x:x, [], {}, np.zeros(5),
+        True, type, (), [], {}, np.zeros(5),
         pd.DataFrame(np.eye(2), index=["a1", "a2"], columns=["b1", "b2"]),
         pd.DataFrame(np.eye(2), index=["a", "b"]).index
     ]
