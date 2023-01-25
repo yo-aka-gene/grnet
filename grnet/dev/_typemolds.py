@@ -7,13 +7,6 @@ import pandas as pd
 from typing import List, Tuple, Union
 from ._checker import typechecker
 
-types = [
-    "a", 0, 1.1, 1+4j, np.ones(10)[1], np.pi,
-    True, type, lambda x:x, [], {}, np.zeros(5),
-    pd.DataFrame(np.eye(2), index=["a1", "a2"], columns=["b1", "b2"]),
-    pd.DataFrame(np.eye(2), index=["a", "b"]).index
-]
-
 
 def invalid_types(
     exception: Union[type, Tuple[type]]
@@ -46,5 +39,12 @@ def invalid_types(
             typechecker(v, type, f"exception[{i}]")
     else:
         typechecker(exception, type, "exception")
+    
+    types = [
+        "a", 0, 1.1, 1+4j, np.ones(10)[1], np.pi,
+        True, type, lambda x:x, [], {}, np.zeros(5),
+        pd.DataFrame(np.eye(2), index=["a1", "a2"], columns=["b1", "b2"]),
+        pd.DataFrame(np.eye(2), index=["a", "b"]).index
+    ]
 
     return [t for t in types if not isinstance(t, exception)]
