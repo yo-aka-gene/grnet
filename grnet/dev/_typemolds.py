@@ -39,7 +39,7 @@ def typemolds(
             typechecker(v, type, f"exception[{i}]")
     else:
         typechecker(exception, type, "exception")
-    
+
     types = [
         "a", 0, 1.1, 1+4j, np.ones(10)[1], np.pi,
         True, type, (), [], {}, np.zeros(5),

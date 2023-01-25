@@ -1,8 +1,6 @@
 """
 test for functions in grnet.dev._checker.py
 """
-from itertools import combinations
-
 import numpy as np
 import pandas as pd
 import pytest
@@ -37,6 +35,7 @@ def not_str():
         pd.DataFrame(np.eye(2), index=["a1", "a2"], columns=["b1", "b2"]),
         pd.DataFrame(np.eye(2), index=["a", "b"]).index
     ]
+
 
 @pytest.fixture
 def tuple_of_types():
@@ -124,7 +123,7 @@ def test_type_correct_error_msg(values):
 def test_type_correct_error_msg_with_tuples(tuple_of_types):
     for i, v in enumerate(tuple_of_types):
         with pytest.raises(AssertionError) as e:
-            typechecker(lambda x:x, v, "asdfghjkl")
+            typechecker(lambda x: x, v, "asdfghjkl")
         assert np.all([f"{t}" in f"{e.value}" for t in v]), \
             f"Failed when the {i}-th input is {v} while error msg should include all types"
         assert "asdfghjkl" in f"{e.value}", \
