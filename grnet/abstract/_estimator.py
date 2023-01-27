@@ -7,6 +7,8 @@ import numpy as np
 import pandas as pd
 
 
+from grnet.dev import typechecker, valchecker
+
 class Estimator:
     """
     Abstract class for wrapper classes of pgmpy.estimators
@@ -55,7 +57,7 @@ class Estimator:
             NxD matrix (N: number of samples, D: number of genes) of data
 
         n: int, default: None
-            number for resampling (for n > N, N will be used instead)
+            positive integer for resampling (for n > N, N will be used instead)
             if None, resampling will not be performed
 
         random_state: int, default: 0
@@ -65,9 +67,14 @@ class Estimator:
         -------
         None
         """
+        typechecker(data, pd.core.frame.DataFrame, "data")
+        if n is not None:
+            typechecker(n, int, "n")
+            valchecker(n>0, "n should be a positive integer")
+        typechecker(random_state, int, "random_state")
         np.random.seed(random_state)
         self.data = data if n is None else data.sample(n=min(n, len(data)))
-        return None
+        pass
 
     def estimate(
         self,
@@ -84,6 +91,7 @@ class Estimator:
         None
         """
         self.edges = []
+        typechecker(self.edges, list, "self.edges")
         pass
 
     def get_matrix(
@@ -107,4 +115,5 @@ class Estimator:
         for i, v in combinations(df.columns, 2):
             df.loc[i, v] = 1 if (i, v) in self.edges or (v, i) in self.edges else 0
         
+        typechecker(df, pd.core.frame.DataFrame, "df")
         return df
