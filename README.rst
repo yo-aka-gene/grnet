@@ -6,7 +6,7 @@ README: Grnet
     :target: https://grnet.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
 
-.. image:: https://github.com/yo-aka-gene/BasalCell/blob/main/%7B%7Bcookiecutter.project_name%7D%7D/logos/default.png
+.. image:: https://github.com/yo-aka-gene/grnet/blob/main/docs/_static/default.png
     :height: 150px
     :width: 150px
     :align: center
@@ -29,7 +29,7 @@ Citation
     :alt: PMID
 
 |
-.. image:: https://github.com/yo-aka-gene/algebra_ver822/blob/main/doc_img/graphical_abstract.PNG
+.. image:: https://github.com/yo-aka-gene/grnet/blob/main/docs/_static/graphical_abstract.png
     :height: 200px
     :width: 200px
     :align: center
@@ -38,4 +38,3 @@ Citation
 
 * Okano Y, Kase Y, Okano H. A set-theoretic definition of cell types with an algebraic structure on gene regulatory networks and application in annotation of RNA-seq data. Stem Cell Reports. 2023 Jan 10;18(1):113-130. doi: 10.1016/j.stemcr.2022.10.015. Epub 2022 Nov 17. PMID: 36400029; PMCID: PMC9859932.
 * GitHub: https://github.com/yo-aka-gene/algebra_ver822
-
