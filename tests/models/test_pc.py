@@ -135,7 +135,8 @@ def test_estimate_correct_models(dfs):
         model.estimate()
         att = model.model
         assert isinstance(att, PGMPYPC), \
-            f"test failed for {i}-th input: model.edges should be a pgmpy.estimators.PC.PC, got {att}[{type(att)}]"
+            f"test failed for {i}-th input: model.edges should be a pgmpy.estimators.PC.PC,\
+                 got {att}[{type(att)}]"
 
 
 def test_get_matrix_correct_order(dfs):

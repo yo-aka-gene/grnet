@@ -112,11 +112,11 @@ class PC(Estimator):
         References
         ----------
         * pgmpy.estimators.PC: https://pgmpy.org/structure_estimator/pc.html?highlight=pc
-        * grnet.abstract.Estimator: 
+        * grnet.abstract.Estimator:
         """
         if max_cond_vars is not None:
             typechecker(max_cond_vars, int, "max_cond_vars")
-        max_cond_vars=self.data.shape[1] if max_cond_vars is None else max_cond_vars
+        max_cond_vars = self.data.shape[1] if max_cond_vars is None else max_cond_vars
         self.model = PGMPYPC(
             data=self.data
         )
