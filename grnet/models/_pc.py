@@ -2,7 +2,7 @@
 pgmpy wrapper class for PC algorithm
 """
 import pandas as pd
-from pgmpy.estimators import PC
+from pgmpy.estimators import PC as PGMPYPC
 
 from grnet.abstract import Estimator
 from grnet.dev import typechecker
@@ -47,6 +47,7 @@ class PC(Estimator):
         input data or resampled data
         (data will be resampled if `n` is specified in `self.__init__`)
 
+    model: 
     edges: List[tuple]
         information of edges are saved as a list of tuples
         after `self.estimate` was run
@@ -114,7 +115,7 @@ class PC(Estimator):
         if max_cond_vars is not None:
             typechecker(max_cond_vars, int, "max_cond_vars")
         max_cond_vars=self.data.shape[1] if max_cond_vars is None else max_cond_vars
-        model = PC(
+        self.model = PGMPYPC(
             data=self.data
         ).estimate(
             variant=variant,
@@ -125,7 +126,7 @@ class PC(Estimator):
             n_jobs=n_jobs,
             show_progress=show_progress
         )
-        self.edges = list(model.edges)
+        self.edges = list(self.model.edges)
         pass
 
     def get_matrix(
