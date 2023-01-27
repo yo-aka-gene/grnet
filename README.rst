@@ -3,7 +3,7 @@ README: Grnet
 =============
 
 .. image:: https://readthedocs.org/projects/grnet/badge/?version=latest
-    :target: https://sparcity.readthedocs.io/en/latest/?badge=latest
+    :target: https://grnet.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
 
 .. image:: https://github.com/yo-aka-gene/BasalCell/blob/main/%7B%7Bcookiecutter.project_name%7D%7D/logos/default.png
