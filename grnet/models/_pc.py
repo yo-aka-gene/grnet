@@ -47,7 +47,9 @@ class PC(Estimator):
         input data or resampled data
         (data will be resampled if `n` is specified in `self.__init__`)
 
-    model: 
+    model: pgmpy.estimators.PC.PC
+        model information (for debugging)
+
     edges: List[tuple]
         information of edges are saved as a list of tuples
         after `self.estimate` was run
