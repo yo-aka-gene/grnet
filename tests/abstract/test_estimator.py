@@ -6,7 +6,7 @@ import pandas as pd
 import pytest
 
 from grnet.abstract import Estimator
-from grnet.dev import typechecker, typemolds, valchecker
+from grnet.dev import typemolds
 
 
 @pytest.fixture
