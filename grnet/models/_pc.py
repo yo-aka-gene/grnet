@@ -117,7 +117,8 @@ class PC(Estimator):
         max_cond_vars=self.data.shape[1] if max_cond_vars is None else max_cond_vars
         self.model = PGMPYPC(
             data=self.data
-        ).estimate(
+        )
+        model = self.model.estimate(
             variant=variant,
             ci_test=ci_test,
             max_cond_vars=max_cond_vars,
@@ -126,7 +127,7 @@ class PC(Estimator):
             n_jobs=n_jobs,
             show_progress=show_progress
         )
-        self.edges = list(self.model.edges)
+        self.edges = list(model.edges)
         pass
 
     def get_matrix(
