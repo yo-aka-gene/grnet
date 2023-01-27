@@ -6,7 +6,7 @@ README: Grnet
     :target: https://grnet.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
 
-.. image:: https://github.com/yo-aka-gene/grnet/blob/main/docs/_static/default.png
+.. image:: https://github.com/yo-aka-gene/grnet/blob/main/docs/_static/default.png?raw=true
     :height: 150px
     :width: 150px
     :align: center
@@ -29,7 +29,7 @@ Citation
     :alt: PMID
 
 |
-.. image:: https://github.com/yo-aka-gene/grnet/blob/main/docs/_static/graphical_abstract.png
+.. image:: https://github.com/yo-aka-gene/grnet/raw/main/docs/_static/graphical_abstract.png
     :height: 200px
     :width: 200px
     :align: center
