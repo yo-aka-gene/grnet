@@ -112,7 +112,7 @@ class PC(Estimator):
         References
         ----------
         * pgmpy.estimators.PC: https://pgmpy.org/structure_estimator/pc.html?highlight=pc
-        * grnet.abstract.Estimator:
+        * grnet.abstract.Estimator: https://grnet.readthedocs.io/en/latest/grnet.abstract.html#grnet.abstract.Estimator
         """
         if max_cond_vars is not None:
             typechecker(max_cond_vars, int, "max_cond_vars")
@@ -144,5 +144,9 @@ class PC(Estimator):
         -------
         GRNMatrix: pandas.core.frame.DataFrame
             edge information of the GRN will be returned as a DxD matrix
+
+        References
+        ----------
+        * grnet.abstract.Estimator: https://grnet.readthedocs.io/en/latest/grnet.abstract.html#grnet.abstract.Estimator
         """
         return super().get_matrix()
