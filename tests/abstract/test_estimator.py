@@ -117,7 +117,7 @@ def test_estimate_correct_return(dfs):
 def test_get_matrix_correct_order(dfs):
     for v in dfs:
         model = Estimator(data=v)
-        with pytest.raises(AttributeError) as e:
+        with pytest.raises(AttributeError):
             model.get_matrix()
 
 
@@ -130,3 +130,28 @@ def test_get_matrix_correct_return_dtype(dfs):
             f"test failed for {i}-th input: return value should be a DataFrame, got {ret}[{type(ret)}]"
         assert np.all((ret == 0) + (ret == 1)), \
             f"test failed for {i}-th input: elements sould be 0 or 1, got {ret}"
+
+
+def test_get_matrix_correct_return_shape():
+    df = pd.DataFrame(np.eye(13))
+    for i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
+        model = Estimator(data=df, n=i)
+        model.estimate()
+        ret = model.get_matrix()
+        shape = (13, 13)
+        assert ret.shape == shape, \
+            f"test failed for {i}-th input: got {ret} [{ret.shape}] while a {shape} matrix is expected"
+
+
+def test_get_matrix_correct_return_rows_cols():
+    rows = [f"a{i}" for i in range(13)]
+    cols = [f"b{i}" for i in range(13)]
+    df = pd.DataFrame(np.eye(13), index=rows, columns=cols)
+    for i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
+        model = Estimator(data=df, n=i)
+        model.estimate()
+        ret = model.get_matrix()
+        assert np.all(ret.index == cols), \
+            f"test failed for {i}-th input: got {ret} while required idx name is {cols}"
+        assert np.all(ret.columns == cols), \
+            f"test failed for {i}-th input: got {ret} while required cols name is {cols}"
