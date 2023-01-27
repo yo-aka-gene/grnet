@@ -48,7 +48,7 @@ lint: ## check style with flake8
 	poetry run flake8 --config=./tox.ini grnet tests
 
 test: ## run tests quickly with the default Python
-	poetry run pytest --doctest-modules grnet/*
+	poetry run pytest --doctest-modules
 
 help:
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
