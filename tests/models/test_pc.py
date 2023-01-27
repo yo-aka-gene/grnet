@@ -34,12 +34,6 @@ def dfs():
     cols = [f"b{i}" for i in range(5)]
     df = pd.DataFrame(np.random.randint(1, 10, (15, 5)), index=rows, columns=cols)
     return [
-        # pd.DataFrame(v) for v in [
-        #     np.ones((5, 5)),
-        #     np.random.rand(10, 3),
-        #     np.random.rand(3, 3),
-        #     np.random.rand(20, 14)
-        # ]
         df
     ]
 
