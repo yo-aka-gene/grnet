@@ -22,7 +22,7 @@ def d_asterisk(
     References
     ----------
     see also our original article for further information
-    * original article: https://www.cell.com/stem-cell-reports/fulltext/S2213-6711(22)00511-2?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS2213671122005112%3Fshowall%3Dtrue
+    * original article: https://doi.org/10.1016/j.stemcr.2022.10.015
     """
     typechecker(subjective, pd.core.frame.DataFrame, "subjective")
     typechecker(objective, pd.core.frame.DataFrame, "objective")
