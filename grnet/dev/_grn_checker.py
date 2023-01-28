@@ -29,7 +29,7 @@ def is_grn_matrix(
     * rows names and columns names are shared
     * all elements are either 0 or 1
     * diagonal elements are 1
-    * if the GRN is an undirected graph, GRN matrix should be either upper/lower triangular
+    * if the GRN is an undirected graph, GRN matrix can be either upper/lower triangular
 
     Examples
     --------
