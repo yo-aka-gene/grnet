@@ -125,3 +125,18 @@ def test_reflexive(grn_mtx):
     for i, v in enumerate(grn_mtx):
         assert d_asterisk(v, v) == 0, \
             f"test failed for {i}-th input {v}: got {d_asterisk(v)}"
+
+
+def test_ones_objective(grn_mtx):
+    for i, v in enumerate(grn_mtx):
+        ob = pd.DataFrame(np.ones(v.shape))
+        assert d_asterisk(v, ob) == 0, \
+            f"test failed for {i}-th input {v}: got {d_asterisk(v, ob)}"
+
+
+def test_ones_subjective(grn_mtx):
+    for i, v in enumerate(grn_mtx):
+        sub = pd.DataFrame(np.ones(v.shape))
+        expect = 1 - (sub.values * v.values).sum() / sub.values.sum()
+        assert d_asterisk(sub, v) == expect, \
+            f"test failed for {i}-th input {v}: expected {expect}, got {d_asterisk(sub, v)}"
