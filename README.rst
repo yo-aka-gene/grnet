@@ -6,7 +6,7 @@ README: Grnet
     :target: https://grnet.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
 
-.. image:: https://raw.githubusercontent.com/yo-aka-gene/grnet/main/docs/_static/default.png
+.. image:: https://raw.githubusercontent.com/yo-aka-gene/grnet/main/docs/_static/logo.PNG
     :height: 150px
     :width: 150px
     :align: center
