@@ -6,12 +6,14 @@ from . import abstract
 from . import dev
 from . import evaluations
 from . import models
+from . import plot
 
 __all__ = [
     "abstract",
     "dev",
     "evaluations",
     "models",
+    "plot",
 ]
 
 __author__ = """Yuji Okano"""
