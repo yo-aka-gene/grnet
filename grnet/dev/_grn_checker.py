@@ -6,6 +6,7 @@ import pandas as pd
 
 from ._checker import typechecker, valchecker
 
+
 def is_grn_matrix(
     data: pd.core.frame.DataFrame
 ) -> None:
@@ -17,9 +18,9 @@ def is_grn_matrix(
     data: pandas.core.frame.DataFrame
         data matrix to be checked if it is a GRN matrix
 
-    Returns
-    -------
-    None
+    Raises
+    ------
+    AssertionError
         it raises `AssertionError` when data is not a GRN matrix
 
     Notes

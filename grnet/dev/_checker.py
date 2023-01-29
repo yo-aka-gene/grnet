@@ -14,6 +14,7 @@ def typechecker(
     """
     dtype checker for functions
     raises AssertionError whin the dtype is inappropriate
+
     Parameters
     ----------
     arg: Any
@@ -22,6 +23,7 @@ def typechecker(
         a tuple of acceptable dtypes or a single dtype
     varname: str
         the name of variable
+
     Raises
     ------
         AssertionError
@@ -63,16 +65,19 @@ def valchecker(
     """
     value checker for functions
     raises AssertionError whin the required condition is not fulfilled
+
     Parameters
     ----------
     condition: Union[bool, numpy.bool_]
         required condition
     suffix: str, default: ""
         additional comments for the error message if needed
+
     Raises
     ------
         AssertionError
             It raises AssertionError when condition is False
+
     Examples
     --------
     >>> from grnet.dev import valchecker
