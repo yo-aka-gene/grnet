@@ -9,6 +9,7 @@ Subpackages
 
    grnet.abstract
    grnet.dev
+   grnet.evaluations
    grnet.models
 
 Module contents
