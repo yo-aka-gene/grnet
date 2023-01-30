@@ -86,7 +86,7 @@ def test_found():
     ]
     for i, v in enumerate(kwargs):
         ret = kwarg_mgr(kwargs=v, key="asdf", default=None)
-        assert ret  == "ghjk", \
+        assert ret == "ghjk", \
             f"test failed for {i}-th input: expected 'ghjk', got {ret}"
 
 

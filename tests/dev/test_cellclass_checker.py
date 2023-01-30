@@ -26,7 +26,7 @@ def invalid_dict():
         color,
         {**grn, **name},
         {**grn, **color},
-        {**name, **color}  
+        {**name, **color}
     ]
 
 
@@ -34,7 +34,7 @@ def invalid_dict():
 def not_df_for_grn():
     const = {"name": "cluster_1", "color": (.5, .5, .5, .5)}
     return [
-        {**const, "grn": v} for v in typemolds(pd.core.frame.DataFrame)  
+        {**const, "grn": v} for v in typemolds(pd.core.frame.DataFrame)
     ]
 
 
@@ -100,7 +100,7 @@ def not_grn():
 def not_grn_for_grn(not_grn):
     const = {"name": "cluster_1", "color": (.5, .5, .5, .5)}
     return [
-        {**const, "grn": v}  for v in not_grn
+        {**const, "grn": v} for v in not_grn
     ]
 
 

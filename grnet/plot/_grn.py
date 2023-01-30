@@ -32,7 +32,7 @@ def grnplot(
     id: Union[int, str]
         index or name of the cell class in CellClasses.
         if data is not a CellClasses, `id` will always be ignored.
-    
+
     **kwargs
         arguments for plot aethetics
     """
@@ -54,7 +54,7 @@ def grnplot(
         ]
 
     if ax is None:
-            _, ax = plt.subplots(figsize=(4, 4))
+        _, ax = plt.subplots(figsize=(4, 4))
     typechecker(ax, plt.Axes, "ax")
 
     feat_dict = {v: i for i, v in enumerate(feat)}

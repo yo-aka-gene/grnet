@@ -33,20 +33,20 @@ class CellClasses:
     Attributes
     ----------
     models: Dict[int, grnet.abstract.Estimator]
-        referring the input list of pretrained (self.estiamte() is already run) models 
-        for the cell classes, cell classes are saved with indexes
+        referring the input list of pretrained (self.estiamte() is already run) models
+         for the cell classes, cell classes are saved with indexes
 
     grns: Dict[int, pandas.core.frame.DataFrame]
-        referring the input list of pretrained (self.estiamte() is already run) models 
-        for the cell classes, GRN matrices of the cell classes are saved with indexes
+        referring the input list of pretrained (self.estiamte() is already run) models
+         for the cell classes, GRN matrices of the cell classes are saved with indexes
 
     names: Dict[int, Union[str, int]]
-        referring the input list of names for the cell classes, 
-        cell classes are saved with indexes
+        referring the input list of names for the cell classes,
+         cell classes are saved with indexes
 
     colors: Dict[int, Union[str, Tuple[float]]]
-        referring the input list of colors (used in visualization) for the cell classes, 
-        cell classes are saved with indexes
+        referring the input list of colors (used in visualization) for the cell classes,
+         cell classes are saved with indexes
     """
     def __init__(
         self,
@@ -108,7 +108,7 @@ class CellClasses:
                         valchecker(len(v) == 4, f"Length of colors[{i}] should be 4")
                         for i_el, el in enumerate(v):
                             typechecker(el, float, f"colors[{i}][{i_el}]")
-                        
+
                 self.colors = {i: v for i, v in enumerate(colors)}
             else:
                 self.colors = {

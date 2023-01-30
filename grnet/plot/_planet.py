@@ -1,7 +1,7 @@
 """
 function for planet plot
 """
-from typing import Callable, Dict, Union
+from typing import Callable, Union
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -73,7 +73,7 @@ def planetplot(
     typechecker(metric, Callable, "metric")
 
     if ax is None:
-            _, ax = plt.subplots(figsize=(4, 4))
+        _, ax = plt.subplots(figsize=(4, 4))
     typechecker(ax, plt.Axes, "ax")
 
     linecolor = kwarg_mgr(kwargs, "linecolor", ".8")
@@ -84,7 +84,6 @@ def planetplot(
     annot_xloc_ob = kwarg_mgr(kwargs, "annot_xloc_ob", 0, (float, int))
     annot_yloc_ob = kwarg_mgr(kwargs, "annot_yloc_ob", 0, (float, int))
     zorder = kwarg_mgr(kwargs, "zorder", 0, int)
-
 
     ax.scatter(0, 0, color=subjective["color"], s=s)
     ax.annotate(subjective["name"], annot_xy_sub)
@@ -102,14 +101,14 @@ def planetplot(
         ax.scatter(d * x[i + 1], d * y[i + 1], color=objective[i]["color"], s=s)
         ax.annotate(
             objective[i]["name"],
-            (d * x[i + 1], d  * y[i + 1]),
+            (d * x[i + 1], d * y[i + 1]),
             (
                 (d + annot_radius_ob) * x[i + 1] + annot_xloc_ob,
                 (d + annot_radius_ob) * y[i + 1] + annot_yloc_ob
             )
         )
         ax.plot(d * np.cos(u), d * np.sin(u), color=linecolor, zorder=zorder)
-    
+
     lim = np.abs([*ax.get_xlim()] + [*ax.get_ylim()]).max()
     ax.set_xlim([-lim, lim])
     ax.set_ylim([-lim, lim])

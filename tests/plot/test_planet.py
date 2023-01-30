@@ -218,7 +218,8 @@ def test_invalid_dtype_ax(estimators, cellclasses, not_ax):
         with pytest.raises(AssertionError) as e:
             planetplot(
                 subjective=estimators[0],
-                objective=cellclasses,ax=v
+                objective=cellclasses,
+                ax=v
             )
         assert f"{v}" in f"{e.value}", \
             f"test failed for {i}-th input {v}"
