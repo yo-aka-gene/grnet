@@ -1,14 +1,13 @@
 =============
-README: Grnet
+README: GRNet
 =============
 
 .. image:: https://readthedocs.org/projects/grnet/badge/?version=latest
     :target: https://grnet.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
 
-.. image:: https://raw.githubusercontent.com/yo-aka-gene/grnet/main/docs/_static/logo.PNG
-    :height: 150px
-    :width: 150px
+.. image:: https://raw.githubusercontent.com/yo-aka-gene/grnet/main/docs/_static/title.PNG
+    :scale: 40%
     :align: center
 
 Python package for gene regulatory networks (GRN) using Bayesian network
