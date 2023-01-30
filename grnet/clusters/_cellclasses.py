@@ -28,7 +28,7 @@ class CellClasses:
         self,
         id: Union[int, str]
     ) -> Dict[str, Union[pd.core.frame.DataFrame, str, int, Tuple[float]]]:
-        fetch a set of information about a cell class
+        fetch a set of information about a cell class (cell-class dict)
 
     Attributes
     ----------
