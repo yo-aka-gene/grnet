@@ -8,9 +8,11 @@ Subpackages
    :maxdepth: 4
 
    grnet.abstract
+   grnet.clusters
    grnet.dev
    grnet.evaluations
    grnet.models
+   grnet.plot
 
 Module contents
 ---------------

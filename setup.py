@@ -2,7 +2,13 @@
 from setuptools import setup
 
 packages = \
-['grnet', 'grnet.abstract', 'grnet.dev', 'grnet.evaluations', 'grnet.models']
+['grnet',
+ 'grnet.abstract',
+ 'grnet.clusters',
+ 'grnet.dev',
+ 'grnet.evaluations',
+ 'grnet.models',
+ 'grnet.plot']
 
 package_data = \
 {'': ['*']}
