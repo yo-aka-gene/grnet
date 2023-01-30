@@ -162,7 +162,7 @@ def test_correct_names(estimators, names):
         "invalid value for self.names"
 
 
-def test_correct_names(estimators, colors):
+def test_correct_colors(estimators, colors):
     kwargs = {"models": estimators, "colors": colors[:3]}
     clusters = CellClasses(**kwargs)
     expect = {i: v for i, v in enumerate(colors[:3])}
