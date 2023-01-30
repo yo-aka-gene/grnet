@@ -33,9 +33,20 @@ class CellClasses:
     Attributes
     ----------
     models: Dict[int, grnet.abstract.Estimator]
+        referring the input list of pretrained (self.estiamte() is already run) models 
+        for the cell classes, cell classes are saved with indexes
+
     grns: Dict[int, pandas.core.frame.DataFrame]
+        referring the input list of pretrained (self.estiamte() is already run) models 
+        for the cell classes, GRN matrices of the cell classes are saved with indexes
+
     names: Dict[int, Union[str, int]]
+        referring the input list of names for the cell classes, 
+        cell classes are saved with indexes
+
     colors: Dict[int, Union[str, Tuple[float]]]
+        referring the input list of colors (used in visualization) for the cell classes, 
+        cell classes are saved with indexes
     """
     def __init__(
         self,
@@ -47,8 +58,13 @@ class CellClasses:
         Parameters
         ----------
         models: List[grnet.abstract.Estimator]
+            list of pretrained (self.estiamte() is already run) models for the cell classes
+
         names: List[Union[str, int]], default: None
+            list of names for the cell classes
+
         colors: Union[List[Union[Tuple[float], str]], str], default: None
+            list of colors (used in visualization) for the cell classes
 
         Returns
         -------
