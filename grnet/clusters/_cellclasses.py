@@ -61,10 +61,12 @@ class CellClasses:
             list of pretrained (self.estiamte() is already run) models for the cell classes
 
         names: List[Union[str, int]], default: None
-            list of names for the cell classes
+            list of names for the cell classes. \
+            required to have the same length with `models`
 
         colors: Union[List[Union[Tuple[float], str]], str], default: None
-            list of colors (used in visualization) for the cell classes
+            list of colors (used in visualization) for the cell classes \
+            required to have the same length with `models`
 
         Returns
         -------
