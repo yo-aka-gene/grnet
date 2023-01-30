@@ -8,12 +8,14 @@ import numpy as np
 import pandas as pd
 
 from grnet.abstract import Estimator
+from grnet.clusters import CellClasses
 from grnet.dev import is_grn_matrix, kwarg_mgr, typechecker
 
 
 def grnplot(
-    data: Union[pd.core.frame.DataFrame, Estimator],
+    data: Union[pd.core.frame.DataFrame, Estimator, CellClasses],
     ax: plt.Axes = None,
+    id: Union[int, str] = None,
     **kwargs
 ):
     """
@@ -21,25 +23,35 @@ def grnplot(
 
     Parameters
     ----------
-    data: Union[pandas.frame.DataFrame, grnet.abstract.Estimator]
-        data source for plotting GRN (GRN matrix or pretrained Estimator)
+    data: Union[pandas.frame.DataFrame, grnet.abstract.Estimator, grnet.clusters.CellClasses]
+        data source for plotting GRN (GRN matrix, pretrained Estimator, or CellClasses)
 
     ax: matplotlib.pyplot.Axes, default: None
         axes to plot the GRN (if `None`, axes will be newly generated)
+
+    id: Union[int, str]
+        index or name of the cell class in CellClasses.
+        if data is not a CellClasses, `id` will always be ignored.
     
     **kwargs
         arguments for plot aethetics
     """
-    typechecker(data, (pd.core.frame.DataFrame, Estimator), "data")
+    typechecker(data, (pd.core.frame.DataFrame, Estimator, CellClasses), "data")
     if isinstance(data, pd.core.frame.DataFrame):
         is_grn_matrix(data)
         feat = data.columns
         edges = [
             (feat[idx], feat[col]) for idx, col in zip(*np.where(data == 1)) if idx != col
         ]
-    else:
+    elif isinstance(data, Estimator):
         feat = data.data.columns
         edges = data.edges
+    else:
+        typechecker(id, (int, str), "id")
+        feat = data.fetch(id)["grn"].columns
+        edges = [
+            (feat[idx], feat[col]) for idx, col in zip(*np.where(data == 1)) if idx != col
+        ]
 
     if ax is None:
             _, ax = plt.subplots(figsize=(4, 4))
