@@ -4,6 +4,7 @@ Class to manage cell classes in in a dataset
 from typing import Dict, List, Tuple, Union
 
 import matplotlib.pyplot as plt
+import pandas as pd
 
 from grnet.abstract import Estimator
 from grnet.dev import is_grn_matrix, typechecker, valchecker
@@ -17,16 +18,16 @@ class CellClasses:
     -------
     __init__(
         self,
-        models,
-        names,
-        colors
+        models: List[grnet.abstract.Estimator],
+        names: List[Union[str, int]],
+        colors: Union[List[Union[Tuple[float], str]], str]
     ) -> None:
         initialize attributes
 
     fetch(
         self,
         id: Union[int, str]
-    ) -> Dict[str, Union[Estimator, str, int, Tuple[float]]]:
+    ) -> Dict[str, Union[pd.core.frame.DataFrame, str, int, Tuple[float]]]:
         fetch a set of information about a cell class
 
     Attributes
@@ -100,5 +101,20 @@ class CellClasses:
     def fetch(
         self,
         id: Union[int, str]
-    ) -> Dict[str, Union[Estimator, str, int, Tuple[float]]]:
-        pass
+    ) -> Dict[str, Union[pd.core.frame.DataFrame, str, int, Tuple[float]]]:
+        """
+        Parameters
+        ----------
+        id: Union[int, str]
+            index or name of the cell class
+
+        Returns
+        -------
+        cell-class dict: Dict[str, Union[pd.core.frame.DataFrame, str, int, Tuple[float]]]
+            {"grn": pd.core.frame.DataFrame, "name": Union[str, int], "color": Union[str, Tuple[float]]}
+        """
+        typechecker(id, (str, int), "id")
+        if isinstance(id, str):
+            temp = {self.names[v]: v for v in self.names}
+            id = temp[id]
+        return {"grn": self.grns[id], "name": self.names[id], "color": self.colors[id]}
