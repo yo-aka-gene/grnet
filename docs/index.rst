@@ -1,5 +1,10 @@
-Welcome to grnet's documentation!
+Welcome to GRNet's documentation!
 =================================
+
+.. image:: https://raw.githubusercontent.com/yo-aka-gene/grnet/main/docs/_static/title.PNG
+    :scale: 40%
+    :align: center
+
 
 .. toctree::
    :maxdepth: 2
