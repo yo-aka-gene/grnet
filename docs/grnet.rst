@@ -9,6 +9,7 @@ Subpackages
 
    grnet.abstract
    grnet.clusters
+   grnet.dataset
    grnet.dev
    grnet.evaluations
    grnet.models
