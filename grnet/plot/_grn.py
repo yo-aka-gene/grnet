@@ -43,12 +43,16 @@ def grnplot(
         edges = [
             (feat[idx], feat[col]) for idx, col in zip(*np.where(data == 1)) if idx != col
         ]
+        color = kwarg_mgr(kwargs, "color", "C0")
     elif isinstance(data, Estimator):
         feat = data.data.columns
         edges = data.edges
+        color = kwarg_mgr(kwargs, "color", "C0")
     else:
         typechecker(id, (int, str), "id")
-        feat = data.fetch(id)["grn"].columns
+        color = kwarg_mgr(kwargs, "color", data.fetch(id)["color"])
+        data = data.fetch(id)["grn"]
+        feat = data.columns
         edges = [
             (feat[idx], feat[col]) for idx, col in zip(*np.where(data == 1)) if idx != col
         ]
@@ -64,7 +68,6 @@ def grnplot(
     x = 10 * np.cos(t)
     y = 10 * np.sin(t)
 
-    color = kwarg_mgr(kwargs, "color", "C0")
     fontsize = kwarg_mgr(kwargs, "fontsize", "x-small")
     edgecolor = kwarg_mgr(kwargs, "edgecolor", color)
     annot_radius = kwarg_mgr(kwargs, "annot_radius", 1.1, (float, int))
