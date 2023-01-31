@@ -6,6 +6,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+from grnet.dev import typechecker
+
 
 parent = str(Path(__file__).resolve().parent)
 
@@ -62,6 +64,7 @@ def load_dataset(
     >>> df.shape
     (1000, 10000)
     """
+    typechecker(name, str, "name")
     assert name in _namelist, \
         f"Invalid dataset name {name}. Choose from {_choice}."
     return pd.read_csv(
@@ -94,6 +97,7 @@ def load_metadata(
     >>> df.shape
     (1000, 1)
     """
+    typechecker(name, str, "name")
     assert name in _namelist, \
         f"Invalid dataset name {name}. Choose from {_choice}."
     return pd.read_csv(
