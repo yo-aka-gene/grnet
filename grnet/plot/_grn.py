@@ -48,7 +48,8 @@ def grnplot(
         edges = data.edges
     else:
         typechecker(id, (int, str), "id")
-        feat = data.fetch(id)["grn"].columns
+        data = data.fetch(id)["grn"]
+        feat = data.columns
         edges = [
             (feat[idx], feat[col]) for idx, col in zip(*np.where(data == 1)) if idx != col
         ]
