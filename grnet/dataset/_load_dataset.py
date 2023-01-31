@@ -1,4 +1,5 @@
 """
+function to load example data
 """
 import glob
 from pathlib import Path
