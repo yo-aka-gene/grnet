@@ -8,6 +8,7 @@ WORKDIR $HOME
 RUN mkdir config grnet notebooks output
 COPY lib.sh /home/jovyan
 COPY writelib.sh /home/jovyan
+RUN mv work data
 
 EXPOSE 8888
 VOLUME ["/home/jovyan/notebooks"]
