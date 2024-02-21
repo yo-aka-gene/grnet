@@ -62,10 +62,5 @@ docs: ## generate Sphinx HTML documentation, including API docs
 	$(BROWSER) docs/_build/html/index.html
 
 deps: ## export dependencies
-	mv ./description.md ./README.md
 	poetry export --with dev -f requirements.txt -o ./docs/requirements.txt
-	poetry build
-	tar zxvf dist/grnet*.tar.gz -C ./dist
-	cp dist/grnet*/setup.py setup.py
-	rm -rf dist
-	mv ./README.md ./description.md
+	poetry export --with dev -f requirements.txt -o ./grnet_sandbox/config/requirements.txt --without-hashes
