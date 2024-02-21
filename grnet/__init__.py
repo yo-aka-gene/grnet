@@ -4,20 +4,20 @@ Top level package of Grnet
 
 from . import abstract
 from . import clusters
-from . import dataset
 from . import dev
 from . import evaluations
 from . import models
 from . import plot
+from . import toydata
 
 __all__ = [
-    "abstract",
-    "clusters",
-    "dataset",
-    "dev",
-    "evaluations",
-    "models",
-    "plot",
+    abstract,
+    clusters,
+    dev,
+    evaluations,
+    models,
+    plot,
+    toydata
 ]
 
 __author__ = """Yuji Okano"""
