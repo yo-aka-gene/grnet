@@ -1,4 +1,4 @@
-FROM jupyter/datascience-notebook:lab-4.0.7
+FROM jupyter/datascience-notebook:lab-3.5.0
 
 RUN pip install --upgrade pip
 RUN pip install jupyterlab
@@ -10,6 +10,6 @@ COPY lib.sh /home/jovyan
 COPY writelib.sh /home/jovyan
 
 EXPOSE 8888
-VOLUME ["/home/jovyan/jupyternb"]
+VOLUME ["/home/jovyan/notebooks"]
 
 CMD ['/bin/bash']
