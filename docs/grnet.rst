@@ -9,11 +9,11 @@ Subpackages
 
    grnet.abstract
    grnet.clusters
-   grnet.dataset
    grnet.dev
    grnet.evaluations
    grnet.models
    grnet.plot
+   grnet.toydata
 
 Module contents
 ---------------
