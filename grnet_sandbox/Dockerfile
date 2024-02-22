@@ -6,9 +6,8 @@ RUN jupyter serverextension enable --py jupyterlab
 
 WORKDIR $HOME
 RUN mkdir config grnet notebooks output
-COPY lib.sh /home/jovyan
-COPY writelib.sh /home/jovyan
 RUN mv work data
+COPY *.sh /home/jovyan
 
 EXPOSE 8888
 VOLUME ["/home/jovyan/notebooks"]
