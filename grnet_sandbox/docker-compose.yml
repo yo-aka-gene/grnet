@@ -13,6 +13,7 @@ services:
       - "./notebooks:/home/jovyan/notebooks"
       - "./output:/home/jovyan/output"
       - "./grnet:/home/jovyan/grnet"
+      - "./tools:/home/jovyan/tools"
     environment:
       NB_UID: YOUR_ID
       GRANT_SUDO: "yes"

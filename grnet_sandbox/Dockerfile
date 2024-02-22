@@ -5,7 +5,7 @@ RUN pip install jupyterlab
 RUN jupyter serverextension enable --py jupyterlab
 
 WORKDIR $HOME
-RUN mkdir config grnet notebooks output
+RUN mkdir config grnet notebooks output tools
 RUN mv work data
 COPY *.sh /home/jovyan
 
