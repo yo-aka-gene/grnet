@@ -32,6 +32,7 @@ watchdog = "^4.0.0"
 scanpy = "^1.9.8"
 myst-parser = "^2.0.0"
 juliapkg = "^0.1.10"
+leidenalg = "^0.10.2"
 
 [build-system]
 requires = ["poetry-core"]
