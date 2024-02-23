@@ -843,6 +843,20 @@ files = [
 referencing = ">=0.31.0"
 
 [[package]]
+name = "juliapkg"
+version = "0.1.10"
+description = "Julia version manager and package manager"
+optional = false
+python-versions = "*"
+files = [
+    {file = "juliapkg-0.1.10-py3-none-any.whl", hash = "sha256:716a4e665bd3c9cc9321d45712d60ba624c50d64ec73b04a7f0ee962649c8f1b"},
+    {file = "juliapkg-0.1.10.tar.gz", hash = "sha256:70507318d51ac8663e856f56048764e49f5a0c4c90d81a3712d039a316369505"},
+]
+
+[package.dependencies]
+semantic-version = ">=2.9,<3.0"
+
+[[package]]
 name = "jupyter-client"
 version = "8.6.0"
 description = "Jupyter protocol implementation and client libraries"
@@ -2736,6 +2750,21 @@ cryptography = ">=2.0"
 jeepney = ">=0.6"
 
 [[package]]
+name = "semantic-version"
+version = "2.10.0"
+description = "A library implementing the 'SemVer' scheme."
+optional = false
+python-versions = ">=2.7"
+files = [
+    {file = "semantic_version-2.10.0-py2.py3-none-any.whl", hash = "sha256:de78a3b8e0feda74cabc54aab2da702113e33ac9d9eb9d2389bcf1f58b7d9177"},
+    {file = "semantic_version-2.10.0.tar.gz", hash = "sha256:bdabb6d336998cbb378d4b9db3a4b56a1e3235701dc05ea2690d9a997ed5041c"},
+]
+
+[package.extras]
+dev = ["Django (>=1.11)", "check-manifest", "colorama (<=0.4.1)", "coverage", "flake8", "nose2", "readme-renderer (<25.0)", "tox", "wheel", "zest.releaser[recommended]"]
+doc = ["Sphinx", "sphinx-rtd-theme"]
+
+[[package]]
 name = "session-info"
 version = "1.0.0"
 description = "session_info outputs version information for modules loaded in the current session, Python, and the OS."
@@ -3451,4 +3480,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "689047a8aec2764988f1415c065777a7393917dfd79d8d4ea1a6ba51b5d84578"
+content-hash = "09f6ae7c554cff25652c0f68f150b1d6f50a46ae187a49c9f34f1ca265e9439f"
