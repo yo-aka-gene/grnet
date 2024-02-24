@@ -13,11 +13,21 @@
 
 - Documentation and example codes (jupyter notebooks) are available in [https://grnet.readthedocs.io/en/latest/index.html](https://grnet.readthedocs.io/en/latest/index.html)
 
-## Start Guide
+## Installation
+This pkg is still a beta version. We will add this pkg to PyPI so that you will be able to install it via:
+```
+pip install
+```
+
+## Start Guide for Developers (& Researchers Interested in Reproducing Our Analysis)
 ### 1. Environment Preference
-- MacOS
-- Docker Desktop
-- git
+- MacOS is preferred
+- Make sure you installed the following softwares:
+    - Homebrew (optional): [https://brew.sh/](https://brew.sh/)
+    - git: [https://formulae.brew.sh/formula/git](https://formulae.brew.sh/formula/git)
+    - Make: [https://formulae.brew.sh/formula/make](https://formulae.brew.sh/formula/make)
+    - poetry: [https://formulae.brew.sh/formula/poetry](https://formulae.brew.sh/formula/poetry)
+    - Docker Desktop: [https://formulae.brew.sh/cask/docker](https://formulae.brew.sh/cask/docker)
 
 ### 2. How to reproduce the virtual env
 - clone [this repository](https://github.com/yo-aka-gene/grnet)
@@ -31,6 +41,10 @@
 - install dependencies by calling the following inside the jupyter env
     ```
     sh lib.sh
+    ```
+- you may need to install R dependencies for some codes in .ipynb files
+    ```
+    Rscript /home/jovyan/tools/set_renv.R
     ```
 ### 3. Run codes
 - to reproduce all outputs at a time with a pipeline, run codes in `/home/jovyan/code/experiment_execution.ipynb`
