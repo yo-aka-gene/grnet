@@ -8,4 +8,5 @@ suppressPackageStartupMessages({
   library(renv)
 })
 
+options(repos = c(CRAN = "http://cran.ism.ac.jp/"))
 renv::restore()
