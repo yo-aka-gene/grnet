@@ -1,7 +1,7 @@
 Examples
 ========
 
-grnet.dataset
+grnet.toydata
 -------------
 
 .. nbgallery::
