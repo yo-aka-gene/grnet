@@ -27,7 +27,7 @@ def term_array(
 def gprofiler(data: np.ndarray) -> pd.DataFrame:
     tempdir = TemporaryDirectory()
     pl.from_numpy(data, schema=["symbols"]).write_ipc(f"{tempdir.name}/data.feather")
-    cmd = f"Rscript {os.path.dirname(__file__)}/_gprofiler_pipeline.R -t {tempdir.name}"
+    cmd = f"Rscript {os.path.dirname(__file__)}/go_pipeline.R -t {tempdir.name}"
     subprocess.call(cmd.split())
     ret = pl.read_ipc(f"{tempdir.name}/enrichment.feather").to_pandas()
     tempdir.cleanup()
