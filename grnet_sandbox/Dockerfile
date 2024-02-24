@@ -10,6 +10,6 @@ RUN mv work data
 COPY *.sh /home/jovyan
 
 EXPOSE 8888
-VOLUME ["/home/jovyan/notebooks"]
+VOLUME ["/home/jovyan"]
 
 CMD ['/bin/bash']
