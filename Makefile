@@ -64,6 +64,8 @@ docs: ## generate Sphinx HTML documentation, including API docs
 deps: ## export dependencies
 	poetry export --with dev -f requirements.txt -o ./docs/requirements.txt
 	poetry export --with dev -f requirements.txt -o ./grnet_sandbox/config/requirements.txt --without-hashes
+	sh ./grnet_sandbox/lib.sh
+	sh ./grnet_sandbox/writelib.sh
 
 synclib: ## initiate automated sync dependencies
 	python synclib.py
