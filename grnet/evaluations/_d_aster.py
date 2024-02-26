@@ -22,7 +22,7 @@ def d_asterisk(
                                  is given as follows: \\
 
     .. math::
-        d^*(\\xi(c), \\xi(c')) := 1 - \\frac{ |C_{\\xi(c)}(F)-C_{\\xi(c')}(F)| }{|C_{\\xi(c)}(F)|}
+        d^*(\\xi(c), \\xi(c')) := 1 - \\frac{ |C_{\\xi(c)}(F)\cap C_{\\xi(c')}(F)| }{|C_{\\xi(c)}(F)|}
 
     Parameters
     ----------
