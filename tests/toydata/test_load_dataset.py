@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from grnet.dataset import available_name, load_dataset, load_metadata
+from grnet.toydata import available_name, load_dataset, load_metadata
 from grnet.dev import typemolds
 
 
