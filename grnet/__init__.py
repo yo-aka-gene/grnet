@@ -6,6 +6,7 @@ from . import abstract
 from . import clusters
 from . import dev
 from . import evaluations
+from . import gene_selection
 from . import models
 from . import plot
 from . import toydata
@@ -15,6 +16,7 @@ __all__ = [
     clusters,
     dev,
     evaluations,
+    gene_selection,
     models,
     plot,
     toydata
