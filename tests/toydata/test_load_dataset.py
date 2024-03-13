@@ -22,7 +22,7 @@ def correct_names():
     root = str(Path(__file__).resolve().parent.parent.parent)
     ret = np.unique([
         v.split("/")[-1].split('_')[-1].split('.')[0] for v in glob.glob(
-            f"{root}/grnet/dataset/data/*"
+            f"{root}/grnet/toydata/data/*"
         )
     ]).tolist()
     return ret

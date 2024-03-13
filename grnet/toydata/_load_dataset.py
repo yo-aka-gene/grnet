@@ -58,7 +58,7 @@ def load_dataset(
     Examples
     --------
     >>> import pandas as pd
-    >>> from grnet.dataset import load_dataset
+    >>> from grnet.toydata import load_dataset
     >>> df = load_dataset("prototype1")
     >>> isinstance(df, pd.core.frame.DataFrame)
     True
@@ -91,7 +91,7 @@ def load_metadata(
     Examples
     --------
     >>> import pandas as pd
-    >>> from grnet.dataset import load_metadata
+    >>> from grnet.toydata import load_metadata
     >>> df = load_metadata("prototype1")
     >>> isinstance(df, pd.core.frame.DataFrame)
     True
