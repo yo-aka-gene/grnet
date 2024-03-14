@@ -1500,6 +1500,22 @@ pyparsing = ">=2.3.1"
 python-dateutil = ">=2.7"
 
 [[package]]
+name = "matplotlib-venn"
+version = "0.11.10"
+description = "Functions for plotting area-proportional two- and three-way Venn diagrams in matplotlib."
+optional = false
+python-versions = "*"
+files = [
+    {file = "matplotlib-venn-0.11.10.tar.gz", hash = "sha256:90d0cfb279c5dbbdf7dfd722c0e2515a37f535e949bcad174483bc777e372e65"},
+    {file = "matplotlib_venn-0.11.10-py3-none-any.whl", hash = "sha256:85650429baff7a812b2785540979e6bf0abcc747e7fe5ffd2a972cb917a826d6"},
+]
+
+[package.dependencies]
+matplotlib = "*"
+numpy = "*"
+scipy = "*"
+
+[[package]]
 name = "mccabe"
 version = "0.7.0"
 description = "McCabe checker, plugin for flake8"
@@ -4051,4 +4067,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "ed772cea4d777dd032e42db3aebd47c3673891329d313e54f9c9d31a8d5e476d"
+content-hash = "0bd26098c5d55d2a70f152a82266b25fdc787f8ae8eb8afff3081d3e6c44d589"
