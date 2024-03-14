@@ -11,6 +11,7 @@ Subpackages
    grnet.clusters
    grnet.dev
    grnet.evaluations
+   grnet.gene_selection
    grnet.models
    grnet.plot
    grnet.toydata
