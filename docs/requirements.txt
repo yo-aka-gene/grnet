@@ -737,6 +737,9 @@ markupsafe==2.1.5 ; python_version >= "3.10" and python_version < "4.0" \
     --hash=sha256:fa9db3f79de01457b03d4f01b34cf91bc0048eb2c3846ff26f66687c2f6d16ab \
     --hash=sha256:fce659a462a1be54d2ffcacea5e3ba2d74daa74f30f5f143fe0c58636e355fdd \
     --hash=sha256:ffee1f21e5ef0d712f9033568f8344d5da8cc2869dbd08d87c84656e6a2d2f68
+matplotlib-venn==0.11.10 ; python_version >= "3.10" and python_version < "4.0" \
+    --hash=sha256:85650429baff7a812b2785540979e6bf0abcc747e7fe5ffd2a972cb917a826d6 \
+    --hash=sha256:90d0cfb279c5dbbdf7dfd722c0e2515a37f535e949bcad174483bc777e372e65
 matplotlib==3.8.3 ; python_version >= "3.10" and python_version < "4.0" \
     --hash=sha256:04b36ad07eac9740fc76c2aa16edf94e50b297d6eb4c081e3add863de4bb19a7 \
     --hash=sha256:09074f8057917d17ab52c242fdf4916f30e99959c1908958b1fc6032e2d0f6d4 \
