@@ -11,12 +11,13 @@ from grnet.dev import (
     multi_union, multi_intersec,
     typechecker
 )
-from ._query_formatter import fmt, getid
+from ._query_formatter import fmt_go
 
 
 def go_jaccard_matrix(
     markers: List[str],
-    species: str = "human"
+    species: str = "human",
+    unique: bool = False
 ) -> np.ndarray:
     """
     function to calculate jaccard index matrix (JIM) based on GO terms of the given gene symbols
@@ -36,6 +37,9 @@ def go_jaccard_matrix(
         list of marker gene symbols
     species: str = "human"
         the name of the species (supported in mygene.MyGeneInfo)
+    unique: bool = False
+        pass True to deal GO terms of the identical GOIDs but in different domains (e.g., "BP", "CC", "MF")
+        as the same terms
 
     Returns
     -------
@@ -54,18 +58,10 @@ def go_jaccard_matrix(
         np.arange(len(markers))
     ):
         union = multi_union([
-            np.unique(
-                np.concatenate(
-                    [getid(fmt(v)) for v in dic["go"].values()]
-                )
-            ) for dic in [golist[idx1], golist[idx2]]
+            fmt_go(go_dict=dic, unique=unique) for dic in [golist[idx1], golist[idx2]]
         ])
         intersection = multi_intersec([
-            np.unique(
-                np.concatenate(
-                    [getid(fmt(v)) for v in dic["go"].values()]
-                )
-            ) for dic in [golist[idx1], golist[idx2]]
+            fmt_go(go_dict=dic, unique=unique) for dic in [golist[idx1], golist[idx2]]
         ])
         arr += [intersection.size / union.size]
     return np.array(arr).reshape(len(markers), len(markers))
