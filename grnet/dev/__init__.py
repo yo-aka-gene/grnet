@@ -6,12 +6,12 @@ from ._set_operations import multi_union, multi_intersec
 from ._typemolds import typemolds
 
 __all__ = [
-    is_cellclass_dict,
-    is_grn_matrix,
-    multi_union,
-    multi_intersec,
-    kwarg_mgr,
-    typechecker,
-    typemolds,
-    valchecker,
+    "is_cellclass_dict",
+    "is_grn_matrix",
+    "multi_union",
+    "multi_intersec",
+    "kwarg_mgr",
+    "typechecker",
+    "typemolds",
+    "valchecker",
 ]
