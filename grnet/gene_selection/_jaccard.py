@@ -11,7 +11,7 @@ from grnet.dev import (
     multi_union, multi_intersec,
     typechecker
 )
-from ._query_formatter import fmt
+from ._query_formatter import fmt, getid
 
 
 def go_jaccard_matrix(
@@ -54,13 +54,17 @@ def go_jaccard_matrix(
         np.arange(len(markers))
     ):
         union = multi_union([
-            np.concatenate(
-                [fmt(v) for v in dic["go"].values()]
+            np.unique(
+                np.concatenate(
+                    [getid(fmt(v)) for v in dic["go"].values()]
+                )
             ) for dic in [golist[idx1], golist[idx2]]
         ])
         intersection = multi_intersec([
-            np.concatenate(
-                [fmt(v) for v in dic["go"].values()]
+            np.unique(
+                np.concatenate(
+                    [getid(fmt(v)) for v in dic["go"].values()]
+                )
             ) for dic in [golist[idx1], golist[idx2]]
         ])
         arr += [intersection.size / union.size]
