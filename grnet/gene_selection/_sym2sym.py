@@ -13,7 +13,8 @@ from ._jaccard import go_jaccard_matrix
 
 def sym_by_intersection(
     markers: List[str],
-    species: str = "human"
+    species: str = "human",
+    unique: bool = False
 ) -> np.ndarray:
     """
     function to suggest similar genes based on the set-theoretical intersection of the GO terms
@@ -24,17 +25,20 @@ def sym_by_intersection(
         list of marker gene symbols
     species: str = "human"
         the name of the species (supported in mygene.MyGeneInfo)
+    unique: bool = False
+        pass True to deal GO terms of the identical GOIDs but in different domains (e.g., "BP", "CC", "MF")
+        as the same terms
 
     Returns
     -------
     new_gene_list: numpy.ndarray
         given marker genes + suggested gene symbols
     """
-    common_terms = go_intersection(markers, species)
+    common_terms = go_intersection(markers, species, unique)
     return multi_intersec([
         np.array([
             hit["symbol"] for hit in MyGeneInfo().query(
-                term["id"],
+                term if unique else term.split("-")[-1],
                 scopes="go",
                 fields="symbol",
                 species=species
@@ -45,7 +49,8 @@ def sym_by_intersection(
 
 def sym_by_union(
     markers: List[str],
-    species: str = "human"
+    species: str = "human",
+    unique: bool = False
 ) -> np.ndarray:
     """
     function to suggest similar genes based on the set-theoretical union of the GO terms
@@ -56,17 +61,20 @@ def sym_by_union(
         list of marker gene symbols
     species: str = "human"
         the name of the species (supported in mygene.MyGeneInfo)
+    unique: bool = False
+        pass True to deal GO terms of the identical GOIDs but in different domains (e.g., "BP", "CC", "MF")
+        as the same terms
 
     Returns
     -------
     new_gene_list: numpy.ndarray
         given marker genes + suggested gene symbols
     """
-    common_terms = go_intersection(markers, species)
+    common_terms = go_intersection(markers, species, unique)
     return multi_union([
         np.array([
             hit["symbol"] for hit in MyGeneInfo().query(
-                term["id"],
+                term if unique else term.split("-")[-1],
                 scopes="go",
                 fields="symbol",
                 species=species
@@ -77,7 +85,8 @@ def sym_by_union(
 
 def sym_by_jaccard(
     markers: List[str],
-    species: str = "human"
+    species: str = "human",
+    unique: bool = False
 ) -> np.ndarray:
     """
     function to suggest similar genes based on the Jaccard Index of the GO terms
@@ -88,6 +97,9 @@ def sym_by_jaccard(
         list of marker gene symbols
     species: str = "human"
         the name of the species (supported in mygene.MyGeneInfo)
+    unique: bool = False
+        pass True to deal GO terms of the identical GOIDs but in different domains (e.g., "BP", "CC", "MF")
+        as the same terms
 
     Returns
     -------
@@ -96,12 +108,12 @@ def sym_by_jaccard(
     """
     extended_list = multi_union([
         np.array(markers),
-        sym_by_union(markers, species)
+        sym_by_union(markers, species, unique)
     ]).tolist()
     jim = go_jaccard_matrix(
-        extended_list, species
+        extended_list, species, unique
     )
-    thresh = go_jaccard_matrix(markers, species).min()
+    thresh = go_jaccard_matrix(markers, species, unique).min()
     return np.array(extended_list)[
         np.where(jim[:len(markers), :].min(axis=0) >= thresh)
     ]
@@ -110,6 +122,7 @@ def sym_by_jaccard(
 def similar_sym(
     markers: List[str],
     species: str = "human",
+    unique: bool = False,
     method: str = "jaccard"
 ) -> np.ndarray:
     """
@@ -121,6 +134,9 @@ def similar_sym(
         list of marker gene symbols
     species: str = "human"
         the name of the species (supported in mygene.MyGeneInfo)
+    unique: bool = False
+        pass True to deal GO terms of the identical GOIDs but in different domains (e.g., "BP", "CC", "MF")
+        as the same terms
     method: str = "jaccard"
         choose from "intersection", "jaccard", or "union"
 
@@ -132,4 +148,4 @@ def similar_sym(
     all_methods = ["intersection", "jaccard", "union"]
     assert method in all_methods, \
         f"Invalid value for method {method}. Choose from {all_methods}"
-    return eval(f"sym_by_{method}")(markers, species)
+    return eval(f"sym_by_{method}")(markers, species, unique)

@@ -54,6 +54,26 @@ def getid(lst: List[Dict[str, Any]]) -> List[str]:
     return [v["id"] for v in lst]
 
 
+def astype_dict2str(lst: List[Dict[str, Any]]) -> List[str]:
+    """
+    function to get 'id' terms from return values of MyGeneInfo().querymany
+
+    Parameters
+    ----------
+    lst: List[Dict[str, Any]]
+        return value of MyGeneInfo().querymany
+
+    Returns
+    -------
+    id_list: List[str]
+        list of goids tagged with evidence, category (or gocategory), and qualifier
+        ($evidence$-$category$-$qualifier$-$id$ or $evidence$-$gocategory$-$qualifier$-$id$)
+    """
+    return [
+        f'{v["evidence"]}-{v["category"] if "category" in v else v["gocategory"]}-{v["qualifier"]}-{v["id"]}' for v in lst
+    ]
+
+
 def fmt_go(
     go_dict: Dict[str, Union[Any, list]],
     unique: bool = False
@@ -79,5 +99,5 @@ def fmt_go(
             [getid(fmt(v)) for v in go_dict["go"].values()]
         )
     ) if unique else np.concatenate(
-        [fmt(v) for v in go_dict["go"].values()]
+        [astype_dict2str(fmt(v)) for v in go_dict["go"].values()]
     )

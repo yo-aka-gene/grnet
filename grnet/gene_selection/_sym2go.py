@@ -10,12 +10,13 @@ from grnet.dev import (
     multi_union, multi_intersec,
     typechecker
 )
-from ._query_formatter import fmt
+from ._query_formatter import fmt_go
 
 
 def go_union(
     markers: List[str],
-    species: str = "human"
+    species: str = "human",
+    unique: bool = False
 ) -> np.ndarray:
     """
     function to return GO terms in the set-theoretical union
@@ -26,6 +27,9 @@ def go_union(
         list of marker gene symbols
     species: str = "human"
         the name of the species (supported in mygene.MyGeneInfo)
+    unique: bool = False
+        pass True to deal GO terms of the identical GOIDs but in different domains (e.g., "BP", "CC", "MF")
+        as the same terms
 
     Returns
     -------
@@ -39,15 +43,14 @@ def go_union(
         species=species
     )
     return multi_union([
-        np.concatenate(
-            [fmt(v) for v in dic["go"].values()]
-        ) for dic in golist
+        fmt_go(go_dict=dic, unique=unique) for dic in golist
     ])
 
 
 def go_intersection(
     markers: List[str],
-    species: str = "human"
+    species: str = "human",
+    unique: bool = False
 ) -> np.ndarray:
     """
     function to return GO terms in the set-theoretical intersection
@@ -58,6 +61,10 @@ def go_intersection(
         list of marker gene symbols
     species: str = "human"
         the name of the species (supported in mygene.MyGeneInfo)
+    unique: bool = False
+        pass True to deal GO terms of the identical GOIDs but in different domains (e.g., "BP", "CC", "MF")
+        as the same terms
+
 
     Returns
     -------
@@ -71,7 +78,5 @@ def go_intersection(
         species=species
     )
     return multi_intersec([
-        np.concatenate(
-            [fmt(v) for v in dic["go"].values()]
-        ) for dic in golist
+        fmt_go(go_dict=dic, unique=unique) for dic in golist
     ])
