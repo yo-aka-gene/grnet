@@ -30,5 +30,36 @@ parser.add_argument(
 )
 
 
+parser.add_argument(
+    "-m", "--metadata",
+    help="path of existing metadata path",
+    default=None,
+    required=False
+)
+
+transpose = lambda fmt: ".T" if fmt in ["csv", "text"] else ""
+
+
 args = parser.parse_args()
-eval(f"sc.read_{args.format}")(args.input).write(args.output)
+adata = eval(
+    f"sc.read_{args.format}('{args.input}'){transpose(args.format)}"
+)
+
+if args.metadata is not None:
+    fileformat = {
+        "csv": {"suffix": "csv", "kwargs": {}},
+        "text": {"suffix": "csv", "kwargs": {"sep": "\t"}}
+    }
+    
+    source_suffix = (
+        lambda d, a, k: d[a][k] if a in d else a
+    )(fileformat, args.format, "suffix")
+    kwargs = (
+        lambda d, a, k: d[a][k] if a in d else {}
+    )(fileformat, args.format, "kwargs")
+    
+    adata.obsm = eval(
+        f"pd.read_{source_suffix}('{args.metadata}', **kwargs)"
+    )
+
+adata.write(args.output)
