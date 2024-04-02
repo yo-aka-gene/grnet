@@ -3,6 +3,7 @@ import os
 
 import anndata as ad
 import scanpy as sc
+import pandas as pd
 
 
 parser = argparse.ArgumentParser(
@@ -37,6 +38,7 @@ parser.add_argument(
     required=False
 )
 
+
 transpose = lambda fmt: ".T" if fmt in ["csv", "text"] else ""
 
 
@@ -58,7 +60,7 @@ if args.metadata is not None:
         lambda d, a, k: d[a][k] if a in d else {}
     )(fileformat, args.format, "kwargs")
     
-    adata.obsm = eval(
+    adata.obs = eval(
         f"pd.read_{source_suffix}('{args.metadata}', **kwargs)"
     )
 
