@@ -1,3 +1,4 @@
+adjustText==1.1.1
 alabaster==0.7.16
 alembic==1.8.1
 altair==4.2.0

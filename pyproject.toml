@@ -42,6 +42,7 @@ optuna = "^3.5.0"
 shap = "^0.44.1"
 matplotlib-venn = "^0.11.10"
 pot = "^0.9.3"
+adjusttext = "^1.1.1"
 
 [build-system]
 requires = ["poetry-core"]
