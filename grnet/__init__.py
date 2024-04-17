@@ -3,6 +3,7 @@ Top level package of Grnet
 """
 
 from . import abstract
+from . import anndata
 from . import clusters
 from . import dev
 from . import evaluations
@@ -13,6 +14,7 @@ from . import toydata
 
 __all__ = [
     abstract,
+    anndata,
     clusters,
     dev,
     evaluations,
