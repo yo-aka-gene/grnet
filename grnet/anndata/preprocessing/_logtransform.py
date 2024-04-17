@@ -3,14 +3,14 @@ from typing import Union
 import numpy as np
 from scipy.sparse import coo_matrix
 
-from grnet.dev import typechecker, valchecker
+from grnet.dev import ScipySparseMatrix, typechecker, valchecker
 
 
 def logtransform(
-    mtx: coo_matrix,
+    mtx: ScipySparseMatrix,
     base: Union[int, float] = np.e
 ) -> coo_matrix:
-    typechecker(mtx, coo_matrix, "mtx")
+    typechecker(mtx, ScipySparseMatrix, "mtx")
     typechecker(base, (int, float), "base")
     log = {
         np.e: np.log,
