@@ -19,6 +19,7 @@ class LogisticModel(DORModel):
         n_trials: int = 100
     ) -> None:
         super().__init__(
+            name="LM",
             random_state=random_state,
             n_trials=n_trials
         )

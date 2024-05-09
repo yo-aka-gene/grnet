@@ -16,11 +16,13 @@ class GLM(DORModel):
         self,
         family: str,
         link: str,
+        name: str,
         random_state: int = 0,
         n_trials: int = 200,
         add_const: bool = True
     ) -> None:
         super().__init__(
+            name=name,
             random_state=random_state,
             n_trials=n_trials
         )
@@ -84,6 +86,7 @@ class NegativeBinomial(GLM):
         super().__init__(
             family="NegativeBinomial",
             link="Log",
+            name="NB",
             random_state=random_state,
             n_trials=n_trials,
             add_const=add_const
@@ -158,6 +161,7 @@ class Poisson(GLM):
         super().__init__(
             family="Poisson",
             link="Log",
+            name="Poisson",
             random_state=random_state,
             n_trials=n_trials,
             add_const=add_const

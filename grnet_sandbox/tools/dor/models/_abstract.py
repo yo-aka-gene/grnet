@@ -9,11 +9,14 @@ from grnet.dev import typechecker
 class DORModel:
     def __init__(
         self,
+        name: str,
         random_state: int = 0,
         n_trials: int = 100
     ) -> None:
+        typechecker(name, str, "name")
         typechecker(random_state, int, "random_state")
         typechecker(n_trials, int, "n_trials")
+        self.name = name
         self.seed = random_state
         self.n_trials = n_trials
 
@@ -43,12 +46,13 @@ class DORModel:
         s = kwargs["s"] if "s" in kwargs else .1
         c = kwargs["c"] if "c" in kwargs else ".6"
         lc = kwargs["linecolor"] if "linecolor" in kwargs else "C0"
+        ls = kwargs["linestyle"] if "linestyle" in kwargs else None
         ndot = kwargs["ndot"] if "ndot" in kwargs else 1000
         if not hide_dots:
             ax.scatter(self.x, self.y, s=s, c=c, label=label)
         if not hide_curve:
             x = np.linspace(self.x.min(), self.x.max(), ndot)
-            ax.plot(x, self.f(x), c=lc, label=linelabel)
+            ax.plot(x, self.f(x), c=lc, label=linelabel, linestyle=ls)
 
         ax.set(xlabel="$Mean$", ylabel="$DOR$")
         no_legend_for_scatter = hide_dots or (label is None)
