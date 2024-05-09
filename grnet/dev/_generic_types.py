@@ -14,3 +14,10 @@ AlgebraicArrays = Union[
     np.ndarray,
     Tensor
 ]
+
+Numeric64 = Union[
+    float, 
+    np.float64,
+    int,
+    np.int64
+]
