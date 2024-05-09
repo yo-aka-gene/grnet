@@ -54,8 +54,8 @@ class LogisticModel(DORModel):
 
         self.beta = b.item()
         self.mse = obj.item()
-        self.x = x
-        self.y = y
+        self.x = x.numpy()
+        self.y = y.numpy()
         self.f = lambda mean: 2 - 2 / (1 + np.e ** (-self.beta * mean))
         self.y_hat = self.f(self.x)
         self.mse = mean_squared_error(self.y, self.y_hat)
