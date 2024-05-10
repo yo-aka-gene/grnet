@@ -11,7 +11,8 @@ def binarize(
     normalizer: Callable = None
 ) -> ad.AnnData:
     typechecker(data, ad.AnnData, "data")
-    typechecker(normalizer, Callable, "normalizer")
+    if normalizer is not None:
+        typechecker(normalizer, Callable, "normalizer")
     ret = data.copy()
     ret.X = (ret.X != 0)
     ret.var["coverage"] = np.ravel(
