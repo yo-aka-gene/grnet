@@ -8,7 +8,8 @@ from grnet.dev import typechecker
 
 def binarize(
     data: ad.AnnData,
-    normalizer: Callable = None
+    normalizer: Callable = None,
+    write: str = None
 ) -> ad.AnnData:
     typechecker(data, ad.AnnData, "data")
     if normalizer is not None:
@@ -25,4 +26,6 @@ def binarize(
         normalizer(data.X).mean(axis=0)
     )
     ret.uns["binarized"] = True
+    if write is not None:
+        ret.write(write)
     return ret
