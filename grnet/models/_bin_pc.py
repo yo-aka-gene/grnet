@@ -150,10 +150,4 @@ class BinPC(Estimator):
         ----------
         * grnet.abstract.Estimator: https://grnet.readthedocs.io/en/latest/grnet.abstract.html#grnet.abstract.Estimator
         """
-        mat = super().get_matrix().values
-        mat[np.diag_indices_from(mat)] = (self.data != 0).astype(int).sum() / len(self.data)
-        return pd.DataFrame(
-            mat,
-            index=self.data.columns,
-            columns=self.data.columns
-        )
+        return super().get_matrix()
