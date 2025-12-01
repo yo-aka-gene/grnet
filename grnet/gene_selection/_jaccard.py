@@ -52,6 +52,7 @@ def go_jaccard_matrix(
         scopes="symbol", fields="go",
         species=species
     )
+    golist = [v for v in golist if "go" in v]
     arr = []
     for (idx1, idx2) in product(
         np.arange(len(markers)),

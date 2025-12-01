@@ -43,7 +43,7 @@ def go_union(
         species=species
     )
     return multi_union([
-        fmt_go(go_dict=dic, unique=unique) for dic in golist
+        fmt_go(go_dict=dic, unique=unique) for dic in golist if "go" in dic
     ])
 
 
@@ -78,5 +78,5 @@ def go_intersection(
         species=species
     )
     return multi_intersec([
-        fmt_go(go_dict=dic, unique=unique) for dic in golist
+        fmt_go(go_dict=dic, unique=unique) for dic in golist if "go" in dic
     ])

@@ -74,6 +74,12 @@ def astype_dict2str(lst: List[Dict[str, Any]]) -> List[str]:
     ]
 
 
+def qc_go_dict(
+    go_dict: Dict[str, Union[Any, list]]
+) -> Dict[str, Union[Any, list]]:
+    return go_dict if "go" in go_dict else {**go_dict, "go": {}}
+
+
 def fmt_go(
     go_dict: Dict[str, Union[Any, list]],
     unique: bool = False
@@ -94,10 +100,11 @@ def fmt_go(
     arr: numpy.ndarray
         numpy array of GOIDs [str] if unique == True; otherwise, numpy array of dict
     """
+    go_dict = qc_go_dict(go_dict)
     return np.unique(
         np.concatenate(
-            [getid(fmt(v)) for v in go_dict["go"].values()]
+            [getid(fmt(v)) for v in go_dict["go"].values() if len(go_dict["go"]) != 0]
         )
     ) if unique else np.concatenate(
-        [astype_dict2str(fmt(v)) for v in go_dict["go"].values()]
+        [astype_dict2str(fmt(v)) for v in go_dict["go"].values() if len(go_dict["go"]) != 0]
     )
