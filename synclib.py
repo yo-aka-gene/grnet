@@ -1,8 +1,10 @@
 import subprocess
-from typing import List
 import time
-from watchdog.observers import Observer
+from typing import List
+
 from watchdog.events import FileSystemEventHandler
+from watchdog.observers import Observer
+
 
 class MyHandler(FileSystemEventHandler):
     def __init__(self, file_to_watch: str, files_to_edit: List[str]) -> None:
@@ -10,11 +12,7 @@ class MyHandler(FileSystemEventHandler):
         self.files_to_edit = files_to_edit
 
     def on_modified(self, event) -> None:
-        if (
-            event.event_type == 'modified'
-        ) and (
-            event.src_path == self.file_to_watch
-        ):
+        if (event.event_type == "modified") and (event.src_path == self.file_to_watch):
             print(
                 f"Update detected in {event.src_path}.\nAutomatically sync files as such."
             )
@@ -23,13 +21,13 @@ class MyHandler(FileSystemEventHandler):
                     f"poetry export --with dev -f requirements.txt -o {file} --without-hashes"
                 )
 
+
 if __name__ == "__main__":
     event_handler = MyHandler(
         file_to_watch="./poetry.lock",
         files_to_edit=[
-            "./grnet_sandbox/config/requirements.txt",
-            "./docs/requirements.txt"
-        ]
+            "./docs/requirements.txt",
+        ],
     )
     observer = Observer()
 
