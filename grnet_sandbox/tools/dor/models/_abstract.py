@@ -7,12 +7,7 @@ from grnet.dev import typechecker
 
 
 class DORModel:
-    def __init__(
-        self,
-        name: str,
-        random_state: int = 0,
-        n_trials: int = 100
-    ) -> None:
+    def __init__(self, name: str, random_state: int = 0, n_trials: int = 100) -> None:
         typechecker(name, str, "name")
         typechecker(random_state, int, "random_state")
         typechecker(n_trials, int, "n_trials")
@@ -20,17 +15,11 @@ class DORModel:
         self.seed = random_state
         self.n_trials = n_trials
 
-
-    def fit(
-        self,
-        data: ad.AnnData,
-        formula: str = None
-    ) -> None:
+    def fit(self, data: ad.AnnData, formula: str = None) -> None:
         typechecker(data, ad.AnnData, "data")
         data = binarize(data) if "binarized" not in data.uns else data
         if formula is not None:
             self.formula = formula
-
 
     def calibration_plot(
         self,
@@ -43,7 +32,7 @@ class DORModel:
     ) -> None:
         if ax is None:
             _, ax = plt.subplots()
-        s = kwargs["s"] if "s" in kwargs else .1
+        s = kwargs["s"] if "s" in kwargs else 0.1
         c = kwargs["c"] if "c" in kwargs else ".6"
         lc = kwargs["linecolor"] if "linecolor" in kwargs else "C0"
         ls = kwargs["linestyle"] if "linestyle" in kwargs else None

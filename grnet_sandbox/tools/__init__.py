@@ -1,14 +1,3 @@
-from . import dor
-from . import go
-from . import plot
-from . import preferences
-from . import preprocessing
+from . import dor, go, plot, preferences, preprocessing
 
-
-__all__ = [
-    dor,
-    go,
-    plot,
-    preferences,
-    preprocessing
-]
+__all__ = [dor, go, plot, preferences, preprocessing]

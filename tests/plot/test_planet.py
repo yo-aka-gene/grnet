@@ -1,6 +1,7 @@
 """
 Test for grnet.plot.planetplot
 """
+
 from typing import Callable
 
 import matplotlib.pyplot as plt
@@ -50,77 +51,47 @@ def not_grn():
     diag1.flags.writeable, diag2.flags.writeable = True, True
     diag1[:], diag2[:] = np.ones(2), np.ones(5)
     return [
-        pd.DataFrame(
-            np.random.rand(5, 2), index=idx1, columns=col1
-        ),
-        pd.DataFrame(
-            mtx1, index=idx1, columns=col1
-        ),
-        pd.DataFrame(
-            np.ones((5, 2)) - np.eye(5, 2), index=idx1, columns=col1
-        ),
-        pd.DataFrame(
-            np.eye(5, 2), index=idx1, columns=col1
-        ),
-        pd.DataFrame(
-            np.random.rand(5, 2), index=idx1, columns=idx1[:2]
-        ),
-        pd.DataFrame(
-            mtx1, index=idx1, columns=idx1[:2]
-        ),
-        pd.DataFrame(
-            np.ones((5, 2)) - np.eye(5, 2), index=idx1, columns=idx1[:2]
-        ),
-        pd.DataFrame(
-            np.eye(5, 2), index=idx1, columns=idx1[:2]
-        ),
-        pd.DataFrame(
-            np.random.rand(5, 5), index=idx1, columns=col2
-        ),
-        pd.DataFrame(
-            mtx2, index=idx1, columns=col2
-        ),
-        pd.DataFrame(
-            np.ones((5, 5)) - np.eye(5), index=idx1, columns=col2
-        ),
-        pd.DataFrame(
-            np.eye(5), index=idx1, columns=col2
-        ),
-        pd.DataFrame(
-            np.random.rand(5, 5), index=idx1, columns=idx1
-        ),
-        pd.DataFrame(
-            mtx2, index=idx1, columns=idx1
-        ),
-        pd.DataFrame(
-            np.ones((5, 5)) - np.eye(5), index=idx1, columns=idx1
-        ),
+        pd.DataFrame(np.random.rand(5, 2), index=idx1, columns=col1),
+        pd.DataFrame(mtx1, index=idx1, columns=col1),
+        pd.DataFrame(np.ones((5, 2)) - np.eye(5, 2), index=idx1, columns=col1),
+        pd.DataFrame(np.eye(5, 2), index=idx1, columns=col1),
+        pd.DataFrame(np.random.rand(5, 2), index=idx1, columns=idx1[:2]),
+        pd.DataFrame(mtx1, index=idx1, columns=idx1[:2]),
+        pd.DataFrame(np.ones((5, 2)) - np.eye(5, 2), index=idx1, columns=idx1[:2]),
+        pd.DataFrame(np.eye(5, 2), index=idx1, columns=idx1[:2]),
+        pd.DataFrame(np.random.rand(5, 5), index=idx1, columns=col2),
+        pd.DataFrame(mtx2, index=idx1, columns=col2),
+        pd.DataFrame(np.ones((5, 5)) - np.eye(5), index=idx1, columns=col2),
+        pd.DataFrame(np.eye(5), index=idx1, columns=col2),
+        pd.DataFrame(np.random.rand(5, 5), index=idx1, columns=idx1),
+        pd.DataFrame(mtx2, index=idx1, columns=idx1),
+        pd.DataFrame(np.ones((5, 5)) - np.eye(5), index=idx1, columns=idx1),
     ]
 
 
 @pytest.fixture
 def estimators():
     return [
-        PretrainedModel(pd.DataFrame(v)) for v in [
-            np.ones((5, 5)), np.eye(5), np.tri(5)
-        ]
+        PretrainedModel(pd.DataFrame(v))
+        for v in [np.ones((5, 5)), np.eye(5), np.tri(5)]
     ]
 
 
 @pytest.fixture
 def names():
-    return [
-        "a", 0, "b", 1, "c", 2, "d", 3
-    ]
+    return ["a", 0, "b", 1, "c", 2, "d", 3]
 
 
 @pytest.fixture
 def colors():
     return [
-        "C0", (.4, .3, .3, .9),
-        "r", (.2, .8, .5, .3),
-        "k", (.1, .1, .7, .6),
-        "b"
+        "C0",
+        (0.4, 0.3, 0.3, 0.9),
+        "r",
+        (0.2, 0.8, 0.5, 0.3),
+        "k",
+        (0.1, 0.1, 0.7, 0.6),
+        "b",
     ]
 
 
@@ -133,7 +104,7 @@ def cellclasses(estimators, names, colors):
 def invalid_args(cellclasses):
     return [
         {"subjective": cellclasses, "objective": cellclasses, "id": 123},
-        {"subjective": cellclasses, "objective": cellclasses, "id": "asdf"}
+        {"subjective": cellclasses, "objective": cellclasses, "id": "asdf"},
     ]
 
 
@@ -144,55 +115,40 @@ def valid_args(estimators, cellclasses):
             "subjective": estimators[0].get_matrix(),
             "objective": cellclasses,
             "ax": None,
-            "id": None
+            "id": None,
         },
         {
             "subjective": estimators[0].get_matrix(),
             "objective": cellclasses,
             "ax": None,
-            "id": "asdf"
+            "id": "asdf",
         },
         {
             "subjective": estimators[0].get_matrix(),
             "objective": cellclasses,
             "ax": plt.subplot(),
-            "id": "asdf"
+            "id": "asdf",
         },
+        {"subjective": estimators[0], "objective": cellclasses, "ax": None, "id": None},
         {
             "subjective": estimators[0],
             "objective": cellclasses,
             "ax": None,
-            "id": None
-        },
-        {
-            "subjective": estimators[0],
-            "objective": cellclasses,
-            "ax": None,
-            "id": "asdf"
+            "id": "asdf",
         },
         {
             "subjective": estimators[0],
             "objective": cellclasses,
             "ax": plt.subplot(),
-            "id": "asdf"
+            "id": "asdf",
         },
-        {
-            "subjective": cellclasses,
-            "objective": cellclasses,
-            "ax": None,
-            "id": "a"
-        },
-        {
-            "subjective": cellclasses,
-            "objective": cellclasses,
-            "ax": None,
-            "id": 2
-        },
+        {"subjective": cellclasses, "objective": cellclasses, "ax": None, "id": "a"},
+        {"subjective": cellclasses, "objective": cellclasses, "ax": None, "id": 2},
         {
             "subjective": cellclasses,
             "objective": cellclasses,
             "ax": plt.subplot(),
-            "id": "a"
+            "id": "a",
         },
     ]
 
@@ -201,40 +157,28 @@ def test_invalid_dtype_subjective(cellclasses, not_subjective):
     for i, v in enumerate(not_subjective):
         with pytest.raises(AssertionError) as e:
             planetplot(subjective=v, objective=cellclasses)
-        assert f"{v}" in f"{e.value}", \
-            f"test failed for {i}-th input {v}"
+        assert f"{v}" in f"{e.value}", f"test failed for {i}-th input {v}"
 
 
 def test_invalid_dtype_objective(cellclasses, not_objective):
     for i, v in enumerate(not_objective):
         with pytest.raises(AssertionError) as e:
             planetplot(subjective=cellclasses, objective=v, id="a")
-        assert f"{v}" in f"{e.value}", \
-            f"test failed for {i}-th input {v}"
+        assert f"{v}" in f"{e.value}", f"test failed for {i}-th input {v}"
 
 
 def test_invalid_dtype_ax(estimators, cellclasses, not_ax):
     for i, v in enumerate(not_ax):
         with pytest.raises(AssertionError) as e:
-            planetplot(
-                subjective=estimators[0],
-                objective=cellclasses,
-                ax=v
-            )
-        assert f"{v}" in f"{e.value}", \
-            f"test failed for {i}-th input {v}"
+            planetplot(subjective=estimators[0], objective=cellclasses, ax=v)
+        assert f"{v}" in f"{e.value}", f"test failed for {i}-th input {v}"
 
 
 def test_invalid_dtype_id(cellclasses, not_id):
     for i, v in enumerate(not_id):
         with pytest.raises(AssertionError) as e:
-            planetplot(
-                subjective=cellclasses,
-                objective=cellclasses,
-                id=v
-            )
-        assert f"{v}" in f"{e.value}", \
-            f"test failed for {i}-th input {v}"
+            planetplot(subjective=cellclasses, objective=cellclasses, id=v)
+        assert f"{v}" in f"{e.value}", f"test failed for {i}-th input {v}"
 
 
 def test_id_none(estimators, cellclasses):
@@ -245,24 +189,25 @@ def test_id_none(estimators, cellclasses):
 def test_id_none_but_data_is_cellclasses(cellclasses):
     with pytest.raises(AssertionError) as e:
         planetplot(subjective=cellclasses, objective=cellclasses)
-    assert "None" in f"{e.value}", \
-        f"test failed for invalid error mgs: {e.value}"
+    assert "None" in f"{e.value}", f"test failed for invalid error mgs: {e.value}"
 
 
 def test_invalid_df(not_grn, cellclasses):
     for i, v in enumerate(not_grn):
         with pytest.raises(AssertionError) as e:
             planetplot(subjective=v, objective=cellclasses)
-        assert "Invalid value" in f"{e.value}", \
-            f"test failed for {i}-th input {v}: invalid error msg {e.value}"
+        assert (
+            "Invalid value" in f"{e.value}"
+        ), f"test failed for {i}-th input {v}: invalid error msg {e.value}"
 
 
 def test_invalid_args(invalid_args):
     for i, v in enumerate(invalid_args):
         with pytest.raises(KeyError) as e:
             planetplot(**v)
-        assert f"{v['id']}" in f"{e.value}", \
-            f"test failed for {i}-th input {v}: invalid error msg {e.value}"
+        assert (
+            f"{v['id']}" in f"{e.value}"
+        ), f"test failed for {i}-th input {v}: invalid error msg {e.value}"
 
 
 def test_valid_args(valid_args):

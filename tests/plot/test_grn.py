@@ -1,6 +1,7 @@
 """
 Test for grnet.plot.grnplot
 """
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -38,77 +39,47 @@ def not_grn():
     diag1.flags.writeable, diag2.flags.writeable = True, True
     diag1[:], diag2[:] = np.ones(2), np.ones(5)
     return [
-        pd.DataFrame(
-            np.random.rand(5, 2), index=idx1, columns=col1
-        ),
-        pd.DataFrame(
-            mtx1, index=idx1, columns=col1
-        ),
-        pd.DataFrame(
-            np.ones((5, 2)) - np.eye(5, 2), index=idx1, columns=col1
-        ),
-        pd.DataFrame(
-            np.eye(5, 2), index=idx1, columns=col1
-        ),
-        pd.DataFrame(
-            np.random.rand(5, 2), index=idx1, columns=idx1[:2]
-        ),
-        pd.DataFrame(
-            mtx1, index=idx1, columns=idx1[:2]
-        ),
-        pd.DataFrame(
-            np.ones((5, 2)) - np.eye(5, 2), index=idx1, columns=idx1[:2]
-        ),
-        pd.DataFrame(
-            np.eye(5, 2), index=idx1, columns=idx1[:2]
-        ),
-        pd.DataFrame(
-            np.random.rand(5, 5), index=idx1, columns=col2
-        ),
-        pd.DataFrame(
-            mtx2, index=idx1, columns=col2
-        ),
-        pd.DataFrame(
-            np.ones((5, 5)) - np.eye(5), index=idx1, columns=col2
-        ),
-        pd.DataFrame(
-            np.eye(5), index=idx1, columns=col2
-        ),
-        pd.DataFrame(
-            np.random.rand(5, 5), index=idx1, columns=idx1
-        ),
-        pd.DataFrame(
-            mtx2, index=idx1, columns=idx1
-        ),
-        pd.DataFrame(
-            np.ones((5, 5)) - np.eye(5), index=idx1, columns=idx1
-        ),
+        pd.DataFrame(np.random.rand(5, 2), index=idx1, columns=col1),
+        pd.DataFrame(mtx1, index=idx1, columns=col1),
+        pd.DataFrame(np.ones((5, 2)) - np.eye(5, 2), index=idx1, columns=col1),
+        pd.DataFrame(np.eye(5, 2), index=idx1, columns=col1),
+        pd.DataFrame(np.random.rand(5, 2), index=idx1, columns=idx1[:2]),
+        pd.DataFrame(mtx1, index=idx1, columns=idx1[:2]),
+        pd.DataFrame(np.ones((5, 2)) - np.eye(5, 2), index=idx1, columns=idx1[:2]),
+        pd.DataFrame(np.eye(5, 2), index=idx1, columns=idx1[:2]),
+        pd.DataFrame(np.random.rand(5, 5), index=idx1, columns=col2),
+        pd.DataFrame(mtx2, index=idx1, columns=col2),
+        pd.DataFrame(np.ones((5, 5)) - np.eye(5), index=idx1, columns=col2),
+        pd.DataFrame(np.eye(5), index=idx1, columns=col2),
+        pd.DataFrame(np.random.rand(5, 5), index=idx1, columns=idx1),
+        pd.DataFrame(mtx2, index=idx1, columns=idx1),
+        pd.DataFrame(np.ones((5, 5)) - np.eye(5), index=idx1, columns=idx1),
     ]
 
 
 @pytest.fixture
 def estimators():
     return [
-        PretrainedModel(pd.DataFrame(v)) for v in [
-            np.ones((5, 5)), np.eye(4), np.tri(7)
-        ]
+        PretrainedModel(pd.DataFrame(v))
+        for v in [np.ones((5, 5)), np.eye(4), np.tri(7)]
     ]
 
 
 @pytest.fixture
 def names():
-    return [
-        "a", 0, "b", 1, "c", 2, "d", 3
-    ]
+    return ["a", 0, "b", 1, "c", 2, "d", 3]
 
 
 @pytest.fixture
 def colors():
     return [
-        "C0", (.4, .3, .3, .9),
-        "r", (.2, .8, .5, .3),
-        "k", (.1, .1, .7, .6),
-        "b"
+        "C0",
+        (0.4, 0.3, 0.3, 0.9),
+        "r",
+        (0.2, 0.8, 0.5, 0.3),
+        "k",
+        (0.1, 0.1, 0.7, 0.6),
+        "b",
     ]
 
 
@@ -119,10 +90,7 @@ def cellclasses(estimators, names, colors):
 
 @pytest.fixture
 def invalid_args(cellclasses):
-    return [
-        {"data": cellclasses, "id": 123},
-        {"data": cellclasses, "id": "asdf"}
-    ]
+    return [{"data": cellclasses, "id": 123}, {"data": cellclasses, "id": "asdf"}]
 
 
 @pytest.fixture
@@ -144,24 +112,21 @@ def test_invalid_dtype_data(not_data):
     for i, v in enumerate(not_data):
         with pytest.raises(AssertionError) as e:
             grnplot(data=v)
-        assert f"{v}" in f"{e.value}", \
-            f"test failed for {i}-th input {v}"
+        assert f"{v}" in f"{e.value}", f"test failed for {i}-th input {v}"
 
 
 def test_invalid_dtype_ax(estimators, not_ax):
     for i, v in enumerate(not_ax):
         with pytest.raises(AssertionError) as e:
             grnplot(data=estimators[0], ax=v)
-        assert f"{v}" in f"{e.value}", \
-            f"test failed for {i}-th input {v}"
+        assert f"{v}" in f"{e.value}", f"test failed for {i}-th input {v}"
 
 
 def test_invalid_dtype_id(cellclasses, not_id):
     for i, v in enumerate(not_id):
         with pytest.raises(AssertionError) as e:
             grnplot(data=cellclasses, id=v)
-        assert f"{v}" in f"{e.value}", \
-            f"test failed for {i}-th input {v}"
+        assert f"{v}" in f"{e.value}", f"test failed for {i}-th input {v}"
 
 
 def test_id_none(estimators):
@@ -172,24 +137,25 @@ def test_id_none(estimators):
 def test_id_none_but_data_is_cellclasses(cellclasses):
     with pytest.raises(AssertionError) as e:
         grnplot(cellclasses)
-    assert "None" in f"{e.value}", \
-        f"test failed for invalid error mgs: {e.value}"
+    assert "None" in f"{e.value}", f"test failed for invalid error mgs: {e.value}"
 
 
 def test_invalid_df(not_grn):
     for i, v in enumerate(not_grn):
         with pytest.raises(AssertionError) as e:
             grnplot(v)
-        assert "Invalid value" in f"{e.value}", \
-            f"test failed for {i}-th input {v}: invalid error msg {e.value}"
+        assert (
+            "Invalid value" in f"{e.value}"
+        ), f"test failed for {i}-th input {v}: invalid error msg {e.value}"
 
 
 def test_invalid_args(invalid_args):
     for i, v in enumerate(invalid_args):
         with pytest.raises(KeyError) as e:
             grnplot(**v)
-        assert f"{v['id']}" in f"{e.value}", \
-            f"test failed for {i}-th input {v}: invalid error msg {e.value}"
+        assert (
+            f"{v['id']}" in f"{e.value}"
+        ), f"test failed for {i}-th input {v}: invalid error msg {e.value}"
 
 
 def test_valid_args(valid_args):

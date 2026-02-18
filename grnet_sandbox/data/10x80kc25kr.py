@@ -2,30 +2,19 @@ import argparse
 import os
 
 import anndata as ad
-import scanpy as sc
 import pandas as pd
-
+import scanpy as sc
 
 parser = argparse.ArgumentParser(
     description="Utility func to convert data to h5ad files"
 )
 
-parser.add_argument(
-    "-i", "--input",
-    help="path of existing data path",
-    required=True
-)
+parser.add_argument("-i", "--input", help="path of existing data path", required=True)
+
+parser.add_argument("-o", "--output", help="path of existing data path", required=True)
 
 parser.add_argument(
-    "-o", "--output",
-    help="path of existing data path",
-    required=True
-)
-
-parser.add_argument(
-    "-m", "--metadata",
-    help="path of existing metadata path",
-    required=True
+    "-m", "--metadata", help="path of existing metadata path", required=True
 )
 
 

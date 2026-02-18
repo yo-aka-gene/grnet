@@ -1,7 +1,3 @@
-from . import metrics
-from . import models
+from . import metrics, models
 
-__all__ = [
-    metrics,
-    models
-]
+__all__ = [metrics, models]

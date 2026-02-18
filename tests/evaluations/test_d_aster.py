@@ -1,6 +1,7 @@
 """
 test for grnet.evaluations.d_asterisk
 """
+
 import numpy as np
 import pandas as pd
 import pytest
@@ -24,58 +25,29 @@ def not_grn():
     diag1.flags.writeable, diag2.flags.writeable = True, True
     diag1[:], diag2[:] = np.ones(2), np.ones(5)
     return [
-        pd.DataFrame(
-            np.random.rand(5, 2), index=idx1, columns=col1
-        ),
-        pd.DataFrame(
-            mtx1, index=idx1, columns=col1
-        ),
-        pd.DataFrame(
-            np.ones((5, 2)) - np.eye(5, 2), index=idx1, columns=col1
-        ),
-        pd.DataFrame(
-            np.eye(5, 2), index=idx1, columns=col1
-        ),
-        pd.DataFrame(
-            np.random.rand(5, 2), index=idx1, columns=idx1[:2]
-        ),
-        pd.DataFrame(
-            mtx1, index=idx1, columns=idx1[:2]
-        ),
-        pd.DataFrame(
-            np.ones((5, 2)) - np.eye(5, 2), index=idx1, columns=idx1[:2]
-        ),
-        pd.DataFrame(
-            np.eye(5, 2), index=idx1, columns=idx1[:2]
-        ),
-        pd.DataFrame(
-            np.random.rand(5, 5), index=idx1, columns=col2
-        ),
-        pd.DataFrame(
-            mtx2, index=idx1, columns=col2
-        ),
-        pd.DataFrame(
-            np.ones((5, 5)) - np.eye(5), index=idx1, columns=col2
-        ),
-        pd.DataFrame(
-            np.eye(5), index=idx1, columns=col2
-        ),
-        pd.DataFrame(
-            np.random.rand(5, 5), index=idx1, columns=idx1
-        ),
-        pd.DataFrame(
-            mtx2, index=idx1, columns=idx1
-        ),
-        pd.DataFrame(
-            np.ones((5, 5)) - np.eye(5), index=idx1, columns=idx1
-        ),
+        pd.DataFrame(np.random.rand(5, 2), index=idx1, columns=col1),
+        pd.DataFrame(mtx1, index=idx1, columns=col1),
+        pd.DataFrame(np.ones((5, 2)) - np.eye(5, 2), index=idx1, columns=col1),
+        pd.DataFrame(np.eye(5, 2), index=idx1, columns=col1),
+        pd.DataFrame(np.random.rand(5, 2), index=idx1, columns=idx1[:2]),
+        pd.DataFrame(mtx1, index=idx1, columns=idx1[:2]),
+        pd.DataFrame(np.ones((5, 2)) - np.eye(5, 2), index=idx1, columns=idx1[:2]),
+        pd.DataFrame(np.eye(5, 2), index=idx1, columns=idx1[:2]),
+        pd.DataFrame(np.random.rand(5, 5), index=idx1, columns=col2),
+        pd.DataFrame(mtx2, index=idx1, columns=col2),
+        pd.DataFrame(np.ones((5, 5)) - np.eye(5), index=idx1, columns=col2),
+        pd.DataFrame(np.eye(5), index=idx1, columns=col2),
+        pd.DataFrame(np.random.rand(5, 5), index=idx1, columns=idx1),
+        pd.DataFrame(mtx2, index=idx1, columns=idx1),
+        pd.DataFrame(np.ones((5, 5)) - np.eye(5), index=idx1, columns=idx1),
     ]
 
 
 @pytest.fixture
 def grn_mtx():
     return [
-        pd.DataFrame(v) for v in [
+        pd.DataFrame(v)
+        for v in [
             np.ones((5, 5)),
             np.eye(5),
             np.tri(5),
@@ -94,8 +66,9 @@ def test_invalid_dtype_subjective(not_df):
     for i, v in enumerate(not_df):
         with pytest.raises(AssertionError) as e:
             d_asterisk(v, df)
-        assert f"{v}" in f"{e.value}", \
-            f"test failed for {i}-th input {v}: got {e.value}"
+        assert (
+            f"{v}" in f"{e.value}"
+        ), f"test failed for {i}-th input {v}: got {e.value}"
 
 
 def test_invalid_dtype_objective(not_df):
@@ -103,8 +76,9 @@ def test_invalid_dtype_objective(not_df):
     for i, v in enumerate(not_df):
         with pytest.raises(AssertionError) as e:
             d_asterisk(df, v)
-        assert f"{v}" in f"{e.value}", \
-            f"test failed for {i}-th input {v}: got {e.value}"
+        assert (
+            f"{v}" in f"{e.value}"
+        ), f"test failed for {i}-th input {v}: got {e.value}"
 
 
 def test_raise_assertionerror_with_not_grn_subjective(not_grn):
@@ -123,20 +97,23 @@ def test_raise_assertionerror_with_not_grn_objective(not_grn):
 
 def test_reflexive(grn_mtx):
     for i, v in enumerate(grn_mtx):
-        assert d_asterisk(v, v) == 0, \
-            f"test failed for {i}-th input {v}: got {d_asterisk(v)}"
+        assert (
+            d_asterisk(v, v) == 0
+        ), f"test failed for {i}-th input {v}: got {d_asterisk(v)}"
 
 
 def test_ones_objective(grn_mtx):
     for i, v in enumerate(grn_mtx):
         ob = pd.DataFrame(np.ones(v.shape))
-        assert d_asterisk(v, ob) == 0, \
-            f"test failed for {i}-th input {v}: got {d_asterisk(v, ob)}"
+        assert (
+            d_asterisk(v, ob) == 0
+        ), f"test failed for {i}-th input {v}: got {d_asterisk(v, ob)}"
 
 
 def test_ones_subjective(grn_mtx):
     for i, v in enumerate(grn_mtx):
         sub = pd.DataFrame(np.ones(v.shape))
         expect = 1 - (sub.values * v.values).sum() / sub.values.sum()
-        assert d_asterisk(sub, v) == expect, \
-            f"test failed for {i}-th input {v}: expected {expect}, got {d_asterisk(sub, v)}"
+        assert (
+            d_asterisk(sub, v) == expect
+        ), f"test failed for {i}-th input {v}: expected {expect}, got {d_asterisk(sub, v)}"
