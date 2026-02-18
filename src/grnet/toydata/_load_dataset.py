@@ -66,7 +66,7 @@ def load_dataset(name: str) -> pd.core.frame.DataFrame:
     """
     typechecker(name, str, "name")
     assert name in _namelist, f"Invalid dataset name {name}. Choose from {_choice}."
-    return pd.read_csv(f"{parent}/data/dataset_{name}.csv", index_col=0)
+    return pd.read_parquet(f"{parent}/data/dataset_{name}.parquet")
 
 
 def load_metadata(name: str) -> pd.core.frame.DataFrame:
@@ -93,4 +93,4 @@ def load_metadata(name: str) -> pd.core.frame.DataFrame:
     """
     typechecker(name, str, "name")
     assert name in _namelist, f"Invalid dataset name {name}. Choose from {_choice}."
-    return pd.read_csv(f"{parent}/data/metadata_{name}.csv", index_col=0)
+    return pd.read_parquet(f"{parent}/data/metadata_{name}.parquet")
