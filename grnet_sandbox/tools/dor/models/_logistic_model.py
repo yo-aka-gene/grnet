@@ -7,7 +7,7 @@ import pandas as pd
 import torch
 from sklearn.metrics import mean_squared_error, r2_score
 
-from grnet.anndata.preprocessing import binarize
+from grnet.anndata.pp import binarize
 
 from ._abstract import DORModel
 

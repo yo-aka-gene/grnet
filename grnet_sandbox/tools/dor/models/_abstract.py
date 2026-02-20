@@ -2,7 +2,7 @@ import anndata as ad
 import matplotlib.pyplot as plt
 import numpy as np
 
-from grnet.anndata.preprocessing import binarize
+from grnet.anndata.pp import binarize
 from grnet.dev import typechecker
 
 

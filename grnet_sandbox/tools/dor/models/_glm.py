@@ -5,7 +5,7 @@ import optuna
 import statsmodels.api as sm
 from sklearn.metrics import mean_squared_error
 
-from grnet.anndata.preprocessing import binarize
+from grnet.anndata.pp import binarize
 from grnet.dev import Numeric64, typechecker
 
 from ._abstract import DORModel
