@@ -43,7 +43,7 @@ class DORModel:
             x = np.linspace(self.x.min(), self.x.max(), ndot)
             ax.plot(x, self.f(x), c=lc, label=linelabel, linestyle=ls)
 
-        ax.set(xlabel="Mean [$\log_2(\mathrm{RPM}+1)$]", ylabel="DOR")
+        ax.set(xlabel="Mean [$\ln(\mathrm{RPM}+1)$]", ylabel="DOR")
         no_legend_for_scatter = hide_dots or (label is None)
         no_legend_for_curve = hide_curve or (linelabel is None)
         if not (no_legend_for_scatter and no_legend_for_curve):

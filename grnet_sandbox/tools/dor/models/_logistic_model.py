@@ -86,7 +86,7 @@ class LogisticModel(DORModel):
         x = np.linspace(self.x.min(), self.x.max(), ndot)
         ax.plot(x, np.zeros(x.size), c=lc, label="$y=0$")
         ax.set(
-            xlabel="Mean [$\ln(\mathrm{RP10K}+1)$]",
+            xlabel="Mean [$\ln(\mathrm{RPM}+1)$]",
             ylabel="Residual errors",
             title="Residual plot",
         )
