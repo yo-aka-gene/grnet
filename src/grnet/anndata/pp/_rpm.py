@@ -9,3 +9,8 @@ def rpm(mtx: ScipySparseMatrix) -> ScipySparseMatrix:
 def rp100k(mtx: ScipySparseMatrix) -> ScipySparseMatrix:
     typechecker(mtx, ScipySparseMatrix, "mtx")
     return 1e5 * mtx / mtx.sum(axis=1)
+
+
+def rp10k(mtx: ScipySparseMatrix) -> ScipySparseMatrix:
+    typechecker(mtx, ScipySparseMatrix, "mtx")
+    return 1e4 * mtx / mtx.sum(axis=1)
