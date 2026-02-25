@@ -113,3 +113,4 @@ def planetplot(
     lim = np.abs([*ax.get_xlim()] + [*ax.get_ylim()]).max()
     ax.set_xlim([-lim, lim])
     ax.set_ylim([-lim, lim])
+    ax.axis("off")
