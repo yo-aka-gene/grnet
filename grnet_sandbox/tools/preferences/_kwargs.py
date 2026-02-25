@@ -23,6 +23,8 @@ OUTPUT_DIR = Path(__file__).resolve().parent.parent.parent / "output"
 
 DATA_DIR = Path(__file__).resolve().parent.parent.parent / "data"
 
+CellTypist_Models = Path(__file__).resolve().parent.parent / "celltypist_models"
+
 dsname = {
     "10x10kc250kr": "Chromium V2\n(deep)",
     "10x80kc25kr": "Chromium V2\n(shallow)",
