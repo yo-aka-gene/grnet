@@ -66,8 +66,8 @@ class LogisticModel(DORModel):
         x = np.linspace(0.5, 1, ndot)
         ax.plot(x, 2 - 2 * x, c=lc, label=linelabel)
         ax.set(
-            xlabel="$1/(1+e^{-b\cdot Mean})$",
-            ylabel="$DOR$",
+            xlabel="$1/(1+e^{-b\cdot \mathrm{Mean}})$",
+            ylabel="DOR",
             title="$b="
             + f"{round(self.beta, digit)},"
             + "\;R^2="
@@ -85,7 +85,11 @@ class LogisticModel(DORModel):
         ax.scatter(self.x, self.y - self.y_hat, s=s, c=c, label=label)
         x = np.linspace(self.x.min(), self.x.max(), ndot)
         ax.plot(x, np.zeros(x.size), c=lc, label="$y=0$")
-        ax.set(xlabel="$Mean$", ylabel="Residual errors", title="Residual plot")
+        ax.set(
+            xlabel="Mean [$\log_2(\mathrm{RPM}+1)$]",
+            ylabel="Residual errors",
+            title="Residual plot",
+        )
         ax.legend()
 
     def calibration_plot(
