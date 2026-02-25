@@ -20,7 +20,7 @@ class LogisticModel(DORModel):
     def fit(
         self, data: ad.AnnData, optimizer: str = "Adagrad", lr: float = 0.1
     ) -> None:
-        super().fit(data=data, formula="$y=-2/(1+e^{-b\cdot Mean})+2$")
+        super().fit(data=data, formula="$y=-2/(1+e^{-b\cdot \mathrm{Mean}})+2$")
         torch.manual_seed(self.seed)
         b = torch.rand(1, requires_grad=True)
         x = torch.from_numpy(data.var["Mean"].values)
@@ -86,7 +86,7 @@ class LogisticModel(DORModel):
         x = np.linspace(self.x.min(), self.x.max(), ndot)
         ax.plot(x, np.zeros(x.size), c=lc, label="$y=0$")
         ax.set(
-            xlabel="Mean [$\log_2(\mathrm{RPM}+1)$]",
+            xlabel="Mean [$\ln(\mathrm{RP10K}+1)$]",
             ylabel="Residual errors",
             title="Residual plot",
         )
