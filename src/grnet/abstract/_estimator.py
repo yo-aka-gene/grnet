@@ -18,7 +18,7 @@ class Estimator:
     -------
     __init__(
         self,
-        data: pandas.core.frame.DataFrame,
+        data: pandas.DataFrame,
         n: int,
         random_state: int
     ) -> None:
@@ -32,12 +32,12 @@ class Estimator:
 
     get_matrix(
         self
-    ) -> pandas.core.frame.DataFrame:
+    ) -> pandas.DataFrame:
         export network information as DxD matrix of 0 or 1 elements
 
     Attributes
     ----------
-    data: pandas.core.frame.DataFrame
+    data: pandas.DataFrame
         input data or resampled data
         (data will be resampled if `n` is specified in `self.__init__`)
 
@@ -47,12 +47,12 @@ class Estimator:
     """
 
     def __init__(
-        self, data: pd.core.frame.DataFrame, n: int = None, random_state: int = 0
+        self, data: pd.DataFrame, n: int = None, random_state: int = 0
     ) -> None:
         """
         Parameters
         ----------
-        data: pandas.core.frame.DataFrame
+        data: pandas.DataFrame
             NxD matrix (N: number of samples, D: number of genes) of data
 
         n: int, default: None
@@ -66,7 +66,7 @@ class Estimator:
         -------
         None
         """
-        typechecker(data, pd.core.frame.DataFrame, "data")
+        typechecker(data, pd.DataFrame, "data")
         if n is not None:
             typechecker(n, int, "n")
             valchecker(n > 0, "n should be a positive integer")
@@ -90,7 +90,7 @@ class Estimator:
         typechecker(self.edges, list, "self.edges")
         pass
 
-    def get_matrix(self) -> pd.core.frame.DataFrame:
+    def get_matrix(self) -> pd.DataFrame:
         """
         Parameters
         ----------
@@ -98,7 +98,7 @@ class Estimator:
 
         Returns
         -------
-        GRNMatrix: pandas.core.frame.DataFrame
+        GRNMatrix: pandas.DataFrame
             edge information of the GRN will be returned as a DxD matrix
         """
         df = pd.DataFrame(
@@ -109,5 +109,5 @@ class Estimator:
         for i, v in combinations(df.columns, 2):
             df.loc[i, v] = 1 if (i, v) in self.edges or (v, i) in self.edges else 0
 
-        typechecker(df, pd.core.frame.DataFrame, "df")
+        typechecker(df, pd.DataFrame, "df")
         return df
