@@ -8,6 +8,7 @@ Subpackages
    :maxdepth: 4
 
    grnet.abstract
+   grnet.anndata
    grnet.clusters
    grnet.dev
    grnet.evaluations

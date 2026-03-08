@@ -56,7 +56,7 @@ help:
 docs: ## generate Sphinx HTML documentation, including API docs
 	rm -f docs/grnet.rst
 	rm -f docs/modules.rst
-	poetry run sphinx-apidoc -o docs/ grnet
+	poetry run sphinx-apidoc -o docs/ src/grnet
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
 	$(BROWSER) docs/_build/html/index.html
