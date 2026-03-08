@@ -17,7 +17,7 @@ class PretrainedModel(Estimator):
     -------
     __init__(
         self,
-        data: pandas.core.frame.DataFrame,
+        data: pandas.DataFrame,
         n: int,
         random_state: int
     ) -> None:
@@ -30,12 +30,12 @@ class PretrainedModel(Estimator):
 
     get_matrix(
         self
-    ) -> pandas.core.frame.DataFrame:
+    ) -> pandas.DataFrame:
         returns the original GRN matrix
 
     Attributes
     ----------
-    data: pandas.core.frame.DataFrame
+    data: pandas.DataFrame
         GRN matrix
 
     edges: List[tuple]
@@ -47,12 +47,12 @@ class PretrainedModel(Estimator):
     """
 
     def __init__(
-        self, data: pd.core.frame.DataFrame, n: int = None, random_state: int = 0
+        self, data: pd.DataFrame, n: int = None, random_state: int = 0
     ) -> None:
         """
         Parameters
         ----------
-        data: pandas.core.frame.DataFrame
+        data: pandas.DataFrame
             pretrained GRN matrix
 
         n: int, default: None
@@ -87,7 +87,7 @@ class PretrainedModel(Estimator):
         """
         pass
 
-    def get_matrix(self) -> pd.core.frame.DataFrame:
+    def get_matrix(self) -> pd.DataFrame:
         """
         Parameters
         ----------
@@ -95,7 +95,7 @@ class PretrainedModel(Estimator):
 
         Returns
         -------
-        GRNMatrix: pandas.core.frame.DataFrame
+        GRNMatrix: pandas.DataFrame
             edge information of the GRN will be returned as a DxD matrix
         """
         return self.data
