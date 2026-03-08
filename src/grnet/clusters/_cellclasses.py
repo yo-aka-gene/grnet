@@ -13,7 +13,7 @@ from grnet.dev import is_grn_matrix, typechecker, valchecker
 
 class CellClasses:
     """
-    Class to manage cell classes in in a dataset
+    Class to manage cell classes in a dataset
 
     Methods
     -------
@@ -28,7 +28,7 @@ class CellClasses:
     fetch(
         self,
         id: Union[int, str]
-    ) -> Dict[str, Union[pd.core.frame.DataFrame, str, int, Tuple[float]]]:
+    ) -> Dict[str, Union[pd.DataFrame, str, int, Tuple[float]]]:
         fetch a set of information about a cell class (cell-class dict)
 
     Attributes
@@ -37,7 +37,7 @@ class CellClasses:
         referring the input list of pretrained (self.estiamte() is already run) models
          for the cell classes, cell classes are saved with indexes
 
-    grns: Dict[int, pandas.core.frame.DataFrame]
+    grns: Dict[int, pandas.DataFrame]
         referring the input list of pretrained (self.estiamte() is already run) models
          for the cell classes, GRN matrices of the cell classes are saved with indexes
 
@@ -121,7 +121,7 @@ class CellClasses:
 
     def fetch(
         self, id: Union[int, str]
-    ) -> Dict[str, Union[pd.core.frame.DataFrame, str, int, Tuple[float]]]:
+    ) -> Dict[str, Union[Estimator, str, int, Tuple[float]]]:
         """
         Parameters
         ----------
@@ -130,11 +130,15 @@ class CellClasses:
 
         Returns
         -------
-        cell-class dict: Dict[str, Union[pd.core.frame.DataFrame, str, int, Tuple[float]]]
-            {"grn": pd.core.frame.DataFrame, "name": Union[str, int], "color": Union[str, Tuple[float]]}
+        cell-class dict: Dict[str, Union[pd.DataFrame, str, int, Tuple[float]]]
+            {"model": Estimator, "name": Union[str, int], "color": Union[str, Tuple[float]]}
         """
         typechecker(id, (str, int), "id")
         if isinstance(id, str):
             temp = {self.names[v]: v for v in self.names}
             id = temp[id]
-        return {"grn": self.grns[id], "name": self.names[id], "color": self.colors[id]}
+        return {
+            "model": self.models[id],
+            "name": self.names[id],
+            "color": self.colors[id],
+        }
