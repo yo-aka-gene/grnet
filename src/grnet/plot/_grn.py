@@ -14,7 +14,7 @@ from grnet.dev import is_grn_matrix, kwarg_mgr, typechecker
 
 
 def grnplot(
-    data: Union[pd.core.frame.DataFrame, Estimator, CellClasses],
+    data: Union[pd.DataFrame, Estimator, CellClasses],
     ax: plt.Axes = None,
     id: Union[int, str] = None,
     **kwargs
@@ -24,7 +24,7 @@ def grnplot(
 
     Parameters
     ----------
-    data: Union[pandas.frame.DataFrame, grnet.abstract.Estimator, grnet.clusters.CellClasses]
+    data: Union[pandas.DataFrame, grnet.abstract.Estimator, grnet.clusters.CellClasses]
         data source for plotting GRN (GRN matrix, pretrained Estimator, or CellClasses)
 
     ax: matplotlib.pyplot.Axes, default: None
@@ -37,8 +37,8 @@ def grnplot(
     **kwargs
         arguments for plot aethetics
     """
-    typechecker(data, (pd.core.frame.DataFrame, Estimator, CellClasses), "data")
-    if isinstance(data, pd.core.frame.DataFrame):
+    typechecker(data, (pd.DataFrame, Estimator, CellClasses), "data")
+    if isinstance(data, pd.DataFrame):
         is_grn_matrix(data)
         feat = data.columns
         edges = [
@@ -54,7 +54,7 @@ def grnplot(
     else:
         typechecker(id, (int, str), "id")
         color = kwarg_mgr(kwargs, "color", data.fetch(id)["color"])
-        data = data.fetch(id)["grn"]
+        data = data.fetch(id)["model"].get_matrix()
         feat = data.columns
         edges = [
             (feat[idx], feat[col])
