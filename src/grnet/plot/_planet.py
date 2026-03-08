@@ -15,7 +15,7 @@ from grnet.evaluations import d_asterisk
 
 
 def planetplot(
-    subjective: Union[pd.core.frame.DataFrame, Estimator, CellClasses],
+    subjective: Union[Estimator, CellClasses],
     objective: CellClasses,
     metric: Callable = d_asterisk,
     ax: plt.Axes = None,
@@ -27,11 +27,11 @@ def planetplot(
 
     Parameters
     ----------
-    subjective: Union[pandas.frame.DataFrame, grnet.abstract.Estimator, grnet.clusters.CellClasses]
-        data source for the GRN of the subjective cell class
-        (GRN matrix, pretrained Estimator, or CellClasses)
+    subjective: Union[grnet.abstract.Estimator, grnet.clusters.CellClasses]
+        data source for the GRNet model of the subjective cell class
+        (Estimator, or CellClasses)
 
-    objective: CellClasses
+    objective: grnet.clusters.CellClasses
         data source for the GRNs of the objective cell classes
 
     metric: Callable, deafult: grnet.evaluations.d_asterisk
@@ -52,19 +52,10 @@ def planetplot(
     see also our original article for further information on planet plots
     * original article: https://doi.org/10.1016/j.stemcr.2022.10.015
     """
-    typechecker(
-        subjective, (pd.core.frame.DataFrame, Estimator, CellClasses), "subjective"
-    )
-    if isinstance(subjective, pd.core.frame.DataFrame):
-        is_grn_matrix(subjective)
+    typechecker(subjective, (Estimator, CellClasses), "subjective")
+    if isinstance(subjective, Estimator):
         subjective = {
-            "grn": subjective,
-            "name": kwarg_mgr(kwargs, "name", ""),
-            "color": kwarg_mgr(kwargs, "color", "C0"),
-        }
-    elif isinstance(subjective, Estimator):
-        subjective = {
-            "grn": subjective.get_matrix(),
+            "model": subjective,
             "name": kwarg_mgr(kwargs, "name", ""),
             "color": kwarg_mgr(kwargs, "color", "C0"),
         }
@@ -91,7 +82,7 @@ def planetplot(
     ax.scatter(0, 0, color=subjective["color"], s=s)
     ax.annotate(subjective["name"], annot_xy_sub)
 
-    distance = np.array([metric(subjective["grn"], ob["grn"]) for ob in objective])
+    distance = np.array([metric(subjective["model"], ob["model"]) for ob in objective])
 
     t = np.linspace(0, 2 * np.pi, num=len(objective) + 2)
     x = np.cos(t)
@@ -100,14 +91,15 @@ def planetplot(
 
     for i, d in enumerate(distance):
         ax.scatter(d * x[i + 1], d * y[i + 1], color=objective[i]["color"], s=s)
-        ax.annotate(
-            objective[i]["name"],
-            (d * x[i + 1], d * y[i + 1]),
-            (
-                (d + annot_radius_ob) * x[i + 1] + annot_xloc_ob,
-                (d + annot_radius_ob) * y[i + 1] + annot_yloc_ob,
-            ),
-        )
+        if objective[i]["name"] != subjective["name"]:
+            ax.annotate(
+                objective[i]["name"],
+                (d * x[i + 1], d * y[i + 1]),
+                (
+                    (d + annot_radius_ob) * x[i + 1] + annot_xloc_ob,
+                    (d + annot_radius_ob) * y[i + 1] + annot_yloc_ob,
+                ),
+            )
         ax.plot(d * np.cos(u), d * np.sin(u), color=linecolor, zorder=zorder)
 
     lim = np.abs([*ax.get_xlim()] + [*ax.get_ylim()]).max()
