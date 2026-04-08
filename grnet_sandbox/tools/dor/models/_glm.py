@@ -94,7 +94,6 @@ class NegativeBinomial(GLM):
         )
 
         def objective(alpha):
-            alpha = trial.suggest_float("alpha", *self.search_range)
             nb = sm.GLM(
                 endog=y, exog=X, family=self.family(alpha=alpha, link=self.link)
             )
