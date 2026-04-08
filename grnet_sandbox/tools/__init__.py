@@ -1,3 +1,8 @@
-from . import dor, go, plot, preferences, preprocessing
+from . import dor, plot, preferences, preprocessing
 
-__all__ = [dor, go, plot, preferences, preprocessing]
+__all__ = [
+    "dor", 
+    "plot", 
+    "preferences", 
+    "preprocessing"
+]
