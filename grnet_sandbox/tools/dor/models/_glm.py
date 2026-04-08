@@ -69,8 +69,8 @@ class NegativeBinomial(GLM):
     def __init__(
         self,
         random_state: int = 0,
+        n_trials: int = 200,
         add_const: bool = True,
-        verbosity: str = "CRITICAL",
         search_min: Numeric64 = 0.01,
         search_max: Numeric64 = 2,
     ) -> None:
