@@ -1,8 +1,0 @@
-./config
-./data
-./grnet
-./notebooks/*.ipynb
-./output
-./tools/grnet
-./tools/preference
-./tools/preprocessing
