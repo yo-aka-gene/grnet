@@ -2,6 +2,7 @@ import argparse
 import os
 
 import anndata as ad
+import numpy as np
 import pandas as pd
 import scanpy as sc
 
@@ -52,5 +53,13 @@ if args.metadata is not None:
     )
 
     adata.obs = eval(f"pd.read_{source_suffix}('{args.metadata}', **kwargs)")
+
+adata.obs.index = pd.Index(np.array(adata.obs.index).astype(object), dtype=object)
+adata.var.index = pd.Index(np.array(adata.var.index).astype(object), dtype=object)
+
+for df in [adata.obs, adata.var]:
+    for col in df.columns:
+        if pd.api.types.is_string_dtype(df[col]) or "arrow" in str(df[col].dtype).lower():
+            df[col] = df[col].to_numpy(dtype=object)
 
 adata.write(args.output)
