@@ -1,9 +1,9 @@
 import anndata as ad
 import matplotlib.pyplot as plt
 import numpy as np
-import optuna
-import statsmodels.api as sm
+from scipy.optimize import minimize_scalar
 from sklearn.metrics import mean_squared_error
+import statsmodels.api as sm
 
 from grnet.anndata.pp import binarize
 from grnet.dev import Numeric64, typechecker
@@ -69,7 +69,6 @@ class NegativeBinomial(GLM):
     def __init__(
         self,
         random_state: int = 0,
-        n_trials: int = 200,
         add_const: bool = True,
         verbosity: str = "CRITICAL",
         search_min: Numeric64 = 0.01,
@@ -83,7 +82,6 @@ class NegativeBinomial(GLM):
             n_trials=n_trials,
             add_const=add_const,
         )
-        self.verbosity = eval(f"optuna.logging.{verbosity}")
         typechecker(search_min, Numeric64, "search_min")
         typechecker(search_max, Numeric64, "search_max")
         self.search_range = (search_min, search_max)
@@ -97,20 +95,20 @@ class NegativeBinomial(GLM):
             if self.add_const
             else data.var["Mean"].values
         )
-        optuna.logging.set_verbosity(self.verbosity)
 
-        def objective(trial):
+        def objective(alpha):
             alpha = trial.suggest_float("alpha", *self.search_range)
             nb = sm.GLM(
                 endog=y, exog=X, family=self.family(alpha=alpha, link=self.link)
             )
             return nb.fit().aic
 
-        study = optuna.create_study(
-            direction="minimize", sampler=optuna.samplers.TPESampler(seed=self.seed)
+        res = minimize_scalar(
+            objective,
+            bounds=self.search_range,
+            method='bounded'
         )
-        study.optimize(objective, n_trials=self.n_trials)
-        return study.best_params["alpha"]
+        return res.x
 
     def fit(self, data: ad.AnnData) -> None:
         typechecker(data, ad.AnnData, "data")
