@@ -7,13 +7,11 @@ from grnet.dev import typechecker
 
 
 class DORModel:
-    def __init__(self, name: str, random_state: int = 0, n_trials: int = 100) -> None:
+    def __init__(self, name: str, random_state: int = 0) -> None:
         typechecker(name, str, "name")
         typechecker(random_state, int, "random_state")
-        typechecker(n_trials, int, "n_trials")
         self.name = name
         self.seed = random_state
-        self.n_trials = n_trials
 
     def fit(self, data: ad.AnnData, formula: str = None) -> None:
         typechecker(data, ad.AnnData, "data")

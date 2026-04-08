@@ -18,10 +18,9 @@ class GLM(DORModel):
         link: str,
         name: str,
         random_state: int = 0,
-        n_trials: int = 200,
         add_const: bool = True,
     ) -> None:
-        super().__init__(name=name, random_state=random_state, n_trials=n_trials)
+        super().__init__(name=name, random_state=random_state)
         typechecker(add_const, bool, "add_const")
         self.family = eval(f"sm.families.{family}")
         self.link = eval(f"sm.genmod.families.links.{link}()")
@@ -69,7 +68,6 @@ class NegativeBinomial(GLM):
     def __init__(
         self,
         random_state: int = 0,
-        n_trials: int = 200,
         add_const: bool = True,
         search_min: Numeric64 = 0.01,
         search_max: Numeric64 = 2,
@@ -79,7 +77,6 @@ class NegativeBinomial(GLM):
             link="Log",
             name="NB",
             random_state=random_state,
-            n_trials=n_trials,
             add_const=add_const,
         )
         typechecker(search_min, Numeric64, "search_min")
@@ -136,14 +133,13 @@ class NegativeBinomial(GLM):
 
 class Poisson(GLM):
     def __init__(
-        self, random_state: int = 0, n_trials: int = 200, add_const: bool = True
+        self, random_state: int = 0, add_const: bool = True
     ) -> None:
         super().__init__(
             family="Poisson",
             link="Log",
             name="Poisson",
             random_state=random_state,
-            n_trials=n_trials,
             add_const=add_const,
         )
 
