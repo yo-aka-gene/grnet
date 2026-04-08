@@ -48,7 +48,6 @@ ipywidgets = "^8.1.8"
 scanpex = "0.2.3"
 celltypist = "^1.7.1"
 ipykernel = "^7.2.0"
-joblib = "^1.5.3"
 
 [build-system]
 requires = ["poetry-core"]
