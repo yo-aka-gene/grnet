@@ -20,7 +20,7 @@ class LogisticModel(DORModel):
     def fit(
         self, data: ad.AnnData, optimizer: str = "Adagrad", lr: float = 0.1
     ) -> None:
-        super().fit(data=data, formula="$y=-2/(1+e^{-b\cdot \mathrm{Mean}})+2$")
+        super().fit(data=data, formula=r"$y=-2/(1+e^{-b\cdot \mathrm{Mean}})+2$")
         torch.manual_seed(self.seed)
         b = torch.rand(1, requires_grad=True)
         x = torch.from_numpy(data.var["Mean"].values)
@@ -66,12 +66,12 @@ class LogisticModel(DORModel):
         x = np.linspace(0.5, 1, ndot)
         ax.plot(x, 2 - 2 * x, c=lc, label=linelabel)
         ax.set(
-            xlabel="$1/(1+e^{-b\cdot \mathrm{Mean}})$",
+            xlabel=r"$1/(1+e^{-b\cdot \mathrm{Mean}})$",
             ylabel="DOR",
             title="$b="
             + f"{round(self.beta, digit)},"
-            + "\;R^2="
-            + f"{self.r2_score.round(digit)}$",
+            + r"\;R^2="
+            + f"{round(self.r2_score, digit)}$",
         )
         ax.legend()
 
@@ -86,7 +86,7 @@ class LogisticModel(DORModel):
         x = np.linspace(self.x.min(), self.x.max(), ndot)
         ax.plot(x, np.zeros(x.size), c=lc, label="$y=0$")
         ax.set(
-            xlabel="Mean [$\ln(\mathrm{RPM}+1)$]",
+            xlabel="Mean " + r"[$\ln(\mathrm{RPM}+1)$]",
             ylabel="Residual errors",
             title="Residual plot",
         )
